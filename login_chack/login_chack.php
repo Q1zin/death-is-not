@@ -20,22 +20,22 @@ class Login_chack{
             $this->userHash = $_COOKIE['userHash'];
             $this->loginHash = $_COOKIE['loginHash'];
             
-            $sqlQuery = "SELECT `name`, `privilege`, `cookie` FROM `user_log` WHERE `loginHash` = '$this->loginHash' AND `userHash` = '$this->userHash' AND `id` = '$this->userId' LIMIT 1";
+            $sqlQuery = "SELECT `name`, `privilege` FROM `user_log` WHERE `loginHash` = '$this->loginHash' AND `userHash` = '$this->userHash' AND `id` = '$this->userId' LIMIT 1";
             if ($sqlResult = mysqli_query($connection, $sqlQuery)){
                 if (mysqli_num_rows($sqlResult) > 0) {
                     $result = mysqli_fetch_array($sqlResult);
                     $this->user_name = $result['name'];
                     $this->privilege = $result['privilege'];
 
-                    if ($result['cookie']){
-                        $this->cookie = $result['cookie'];
-                    } else {
-                        if ($_COOKIE['cookie_agreement'] == true){
-                            $this->cookie = 1;
-                            $sqlQuery_2 = "UPDATE `user_log` SET `cookie` = '1' WHERE `id` = '$this->userId'";
-                            mysqli_query($connection, $sqlQuery_2);
-                        }
-                    }
+                    // if ($result['cookie']){
+                    //     $this->cookie = $result['cookie'];
+                    // } else {
+                    //     if ($_COOKIE['cookie_agreement'] == true){
+                    //         $this->cookie = 1;
+                    //         $sqlQuery_2 = "UPDATE `user_log` SET `cookie` = '1' WHERE `id` = '$this->userId'";
+                    //         mysqli_query($connection, $sqlQuery_2);
+                    //     }
+                    // }
                     $this->login_in = true;
                 } else {
                     setcookie("userId", '', time() - 300);

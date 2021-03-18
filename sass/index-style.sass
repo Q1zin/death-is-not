@@ -3,12 +3,48 @@
     padding: 0
     box-sizing: border-box
     outline: none
+
+.error-reg-name, .error-reg-last-name, .error-reg-email, .error-reg-pass, .error-support-name, .error-support-last-name, .error-support-email
+    margin-bottom: 4px
+    font-family: 'Montserrat', sans-serif
+    font-style: normal
+    font-weight: normal
+    font-size: 10px
+    color: #df6666
+
+.error-reg-pass
+    margin-bottom: 12px
+
+.menu
+    display: none
+
+.footer-wrap2
+    display: none
+
+.content-wrap-swipe
+    width: 310px
+    display: none
+    margin: auto
+
+.swiper-container
+    // width: calc(100% - 20px)
+    height: 200px
+
+.swiper-slide
+    text-align: center
+    font-size: 18px
+    background: #fff
+    border: 1px red solid
+    width: 140px
+
 .hidden
     display: none
 .header
     width: 100%
     background-color: #F34D42
     padding: 20px 0
+    &-center
+        display: none
     &-wrap
         width: 1300px
         margin: auto
@@ -73,6 +109,9 @@
                 line-height: 145%
                 cursor: pointer
 
+.modal-wrap-foot
+    display: none
+
 .user-link
     display: flex
     align-items: center
@@ -101,6 +140,8 @@
         display: flex
         justify-content: space-between
     &-left
+        &__img
+            display: none
         &__text
             max-width: 550px
             &--emphasis
@@ -205,7 +246,7 @@
         width: 312px
         background: #FFFFFF
         border-radius: 12px
-        padding: 16px 20px 30px 20px
+        padding: 16px 20px 20px 20px
         flex-direction: column
         &__error
             font-family: Montserrat
@@ -214,7 +255,6 @@
             font-size: 12px
             line-height: 15px
             color: #F34D42
-            margin-bottom: 22px
             text-align: center
             display: none
             &--active
@@ -231,10 +271,9 @@
             font-size: 14px
             line-height: 15px
             color: #F34D42
-            margin-bottom: 22px
+            margin-bottom: 8px
             &-pass
                 padding-right: 38px
-                margin-bottom: 16px
                 &--wrap
                     position: relative
             &::placeholder
@@ -253,6 +292,7 @@
                 color: #FFFFFF
                 margin-bottom: 16px
                 cursor: pointer
+                margin-top: 10px
         &__title
             font-family: Montserrat
             font-style: normal
@@ -283,7 +323,7 @@
         width: 312px
         background: #FFFFFF
         border-radius: 12px
-        padding: 16px 20px 30px 20px
+        padding: 16px 20px 20px 20px
         flex-direction: column
         &__error
             font-family: Montserrat
@@ -292,7 +332,7 @@
             font-size: 12px
             line-height: 15px
             color: #F34D42
-            margin-bottom: 22px
+            margin-bottom: 8px
             text-align: center
             display: none
             &--active
@@ -309,7 +349,7 @@
             font-size: 14px
             line-height: 15px
             color: #F34D42
-            margin-bottom: 18px
+            margin-bottom: 4px
             &--name
                 width: 100%
                 padding: 16px 20px
@@ -322,7 +362,7 @@
                 font-size: 14px
                 line-height: 15px
                 color: #F34D42
-                margin-bottom: 18px
+                margin-bottom: 4px
             &--last-name
                 width: 100%
                 padding: 16px 20px
@@ -335,10 +375,10 @@
                 font-size: 14px
                 line-height: 15px
                 color: #F34D42
-                margin-bottom: 18px
+                margin-bottom: 4px
             &-pass
                 padding-right: 38px
-                margin-bottom: 16px
+                margin-bottom: 4px
                 &--wrap
                     position: relative
             &::placeholder
@@ -365,7 +405,7 @@
             line-height: 145%
             color: #000000
             text-align: center
-            margin-bottom: 38px
+            margin-bottom: 24px
         &__btn
             &--log
                 color: #040404
@@ -424,7 +464,7 @@
             &__information
                 display: flex
                 flex-direction: column
-                margin-bottom: 20px
+                margin-bottom: 8px
                 &--item
                     border: 1px solid #FADEDE
                     box-sizing: border-box
@@ -439,7 +479,7 @@
                     &::placeholder
                         color: #D29595
                     &:not(:last-child)
-                        margin-bottom: 10px
+                        margin-bottom: 4px
             &__sub
                 background: #F34D42
                 border-radius: 8px
@@ -453,6 +493,19 @@
                 border: none
                 padding: 11px 64px
                 cursor: pointer
+                &-full
+                    background: #F34D42
+                    border-radius: 8px
+                    font-family: Montserrat
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 12px
+                    line-height: 145%
+                    color: #FFFFFF
+                    margin-bottom: 10px
+                    border: none
+                    padding: 11px 64px
+                    cursor: pointer
             &__agreement
                 font-family: Montserrat
                 font-style: normal
@@ -518,7 +571,7 @@
     background-size: 16px 16px
     content: ''
     position: absolute
-    top: 35.5%
+    top: 42.5%
     right: 5px
     transform: translate(-50%, -50%)
     z-index: 100000
@@ -533,7 +586,7 @@
     background-size: 16px 16px
     content: ''
     position: absolute
-    top: 35.5%
+    top: 44.5%
     right: 5px
     transform: translate(-50%, -50%)
     z-index: 100000
@@ -546,12 +599,12 @@
 
 .cover-up
     position: absolute
-    top: -20%
-    left: -20%
+    top: 0
+    left: 0
     right: 0
     bottom: 0
-    width: 300%
-    height: 300%
+    width: 100%
+    height: 100%
     background-color: rgba(31,10,9,0.5)
     z-index: 100
     display: none
@@ -670,12 +723,6 @@
         & span
             color: #ffffff
 
-// 1300 @media (max-width: 1340px) 868
-
-// 868 @media (max-width: 900px) 652
-
-// 652 @media (max-width: 680px) ...
-
 @media (max-width: 1340px)
     .header
         &-wrap
@@ -733,6 +780,13 @@
                 font-size: 12px
 
 @media (max-width: 900px)
+    .user-link
+        &__image
+            width: 30px
+            height: 30px
+            margin-right: 8px
+        &__text
+            font-size: 10px
     .header
         padding: 15px
         &-wrap
@@ -805,8 +859,162 @@
             &--link
                 font-size: 11px
 
-// @media (max-width: 680px)
-    // .header
-    //     padding: 15px
-    //     &-wrap
-    //         width: 656px
+@media (max-width: 680px)
+    .content-wrap-swipe
+        display: block
+    .header
+        padding: 10px 0
+        &-center
+            display: flex
+            align-items: center
+            justify-content: space-between
+            width: 100%
+            &-title
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 145%
+                color: #FFFFFF
+
+        &-wrap
+            width: calc(100% - 20px)
+        &-left
+            display: none
+        &-right
+            display: none
+
+    .menu
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        height: 122px
+        background: #F34D42
+        align-items: flex-end
+        justify-content: center
+        display: none
+        &--active
+            display: flex
+        &-close
+            position: absolute
+            left: 10px
+            top: 10px
+            height: 10px
+            width: 10px
+        &-wrap
+            display: flex
+            align-items: center
+            flex-direction: column
+            margin-bottom: 20px
+        &__links
+            display: flex
+            align-items: center
+            flex-direction: column
+            &--item
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 12px
+                color: #FFFFFF
+                &:not(:nth-child(1))
+                    text-decoration: none
+                &:not(:last-child)
+                    margin-bottom: 12px
+
+    .content
+        &-wrap
+            display: none
+            width: calc(100% - 20px)
+
+    .information
+        padding: 14px 0
+        &-wrap
+            width: calc(100% - 20px)
+            flex-direction: column
+            align-items: center
+        &-left
+            &__text
+                &--p
+                    float: left
+                    &:not(:last-child)
+                        margin-bottom: 0
+            &__img
+                display: block
+                width: 170px
+                height: 212px
+                object-fit: cover
+                float: left
+                margin-right: 10px
+                margin-bottom: 10px
+            &__title
+                margin-bottom: 10px
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 24px
+                line-height: 29px
+                color: #131313
+                &--emphasis
+                    font-family: Montserrat
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 24px
+                    line-height: 29px
+                    color: #131313
+                    text-decoration: none
+        &-right
+            display: none
+    .modal-don
+        padding-top: 0
+        display: flex
+        position: relative
+        top: auto
+        left: auto
+        transform: translate(0, 0)
+        width: 310px
+        margin: auto
+        flex-direction: column
+        z-index: 99
+        &-big__agreement
+            margin-bottom: 15px
+
+    .modal-wrap-foot
+        display: flex
+        flex-direction: column
+
+    .modal-close__link-mini
+        display: none
+
+    .footer
+        margin: auto
+        &__item
+            color: #000000
+            &--link
+                color: #000000
+        &-wrap
+            display: none
+            // width: calc(100% - 20px)
+        &-wrap2
+            width: calc(100% - 20px)
+            display: flex
+            margin: auto
+            align-items: center
+            justify-content: space-between
+            &--text
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 139.9%
+                color: #FFFFFF
+            &--glav
+                width: 30px
+                height: 30px
+            &-form
+                height: 31px
+    .header-right__logining--btn
+        padding: 5px 12px
+        border-radius: 4px
+        z-index: 100

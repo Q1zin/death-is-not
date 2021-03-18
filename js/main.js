@@ -84,21 +84,33 @@ $(document).ready(function () {
             return null;
     }
 
-    function openDonMini() {
-        var donDialogMini = $(".modal-don-mini");
-        donDialogMini.addClass("modal-don-mini--active");
-        var coverUpDialog = $(".cover-up");
-        coverUpDialog.addClass("cover-up--active");
-        document.cookie = "donDialogMini=true; path=/; max-age=864000";
-        var body = $("body");
-        body.addClass("body--stop")
-    }
+    // function openDonMini() {
+    //     var donDialogMini = $(".modal-don-mini");
+    //     donDialogMini.addClass("modal-don-mini--active");
+    //     var coverUpDialog = $(".cover-up");
+    //     coverUpDialog.addClass("cover-up--active");
+    //     document.cookie = "donDialogMini=true; path=/; max-age=864000";
+    //     var body = $("body");
+    //     body.addClass("body--stop")
+    // }
 
-    var x = get_cookie("donDialogMini")
+    // var x = get_cookie("donDialogMini")
 
-    if (!x) {
-        setTimeout(openDonMini, 10000);
-    }
+    // if (!x) {
+    //     setTimeout(openDonMini, 3000);
+    // }
+
+    $(".header-menu").on("click", function (event) {
+      event.preventDefault();
+      var menu = $(".menu");
+      menu.addClass("menu--active");
+    })
+
+    $(".menu-close").on("click", function (event) {
+      event.preventDefault();
+      var menu = $(".menu");
+      menu.removeClass("menu--active");
+    })
 
     var num = 3;
     var inProcess = false;
@@ -163,8 +175,6 @@ $(document).ready(function () {
     $(".modal-login__input--sub").on("click", function () {
       var inputLogin = $(".modal-login__input--log").val();
       var inputPassword = $(".modal-login__input-pass").val();
-      console.log(inputLogin);
-      console.log(inputPassword);
 
       $.ajax({
           url: 'sign-in.php',
@@ -175,7 +185,6 @@ $(document).ready(function () {
           }
         }).done(function(data){
           data = jQuery.parseJSON(data);
-          console.log(data);
           if (data.err_login == false && data.err_password == false) {
             location.reload();
           } else {
@@ -258,9 +267,67 @@ $(document).ready(function () {
     })
 
 
+    var swiper = new Swiper(".swiper-container", {
+          slidesPerView: 'auto',
+          // centeredSlides: true,
+          spaceBetween: 10,
+          initialSlide: 0,
+          grabCursor: true
+    });
 
 
 
+    $(".more-slide").on("click", function (params) {
+      // swiper.swiper.slideTo(0, 0);('<div className="swiper-slide">Slide 10"</div>');
+      swiper.appendSlide('Slide ' + (++appendNumber));
+      console.log(123);
+    })
+
+
+    function allLetter1(uname) { 
+      var unameLeng = uname.length;
+        if (unameLeng >=3 && unameLeng <=14){
+          var letters = /^[A-Za-zА-Яа-я]+$/;
+          if (uname.match(letters)){
+            return true;
+          } else {
+            return 'errTokenName';
+          }
+        } else {
+          return 'errLengName';
+        }
+      }
+
+      function allLetter2(uname) { 
+        var unameLeng = uname.length;
+        if (unameLeng >=3 && unameLeng <=32){
+          var letters = /^[A-Za-zА-Яа-я]+$/;
+          if (uname.match(letters)){
+            return true;
+          } else {
+            return 'errTokenName';
+          }
+        } else {
+          return 'errLengName';
+        }
+      }
+
+      function passid_validation(passid) {
+        var passid_len = passid.length;
+        if (passid_len == 0 || passid_len >= 32 || passid_len < 4) {
+          return false;
+        }
+        return true;
+      }
+
+      function ValidateEmail(uemail) {
+        var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(uemail.match(mailformat)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
 
 
     $(".modal-reg__input--sub").on("click", function () {
@@ -269,7 +336,17 @@ $(document).ready(function () {
       var inputLogin = $(".modal-reg__input--log").val();
       var inputPassword = $(".modal-reg__input-pass").val();
 
-      $.ajax({
+      var chackName = allLetter1(inputName);
+      var chackLastName = allLetter2(inputLastName);
+      var chackLogin = ValidateEmail(inputLogin);
+      var chackPass = passid_validation(inputPassword);
+
+      if (chackName && chackLastName && chackLogin && chackPass){
+        $('.error-reg-name').text('');
+        $('.error-reg-last-name').text('');
+        $('.error-reg-email').text('');
+        $('.error-reg-pass').text('');
+        $.ajax({
           url: 'sign-up.php',
           method: 'POST',
           data: {"password" : inputPassword,"login" : inputLogin,"last_name" : inputLastName,"name" : inputName},
@@ -278,7 +355,6 @@ $(document).ready(function () {
           }
         }).done(function(data){
           data = jQuery.parseJSON(data);
-          console.log(data);
           if (data.registred == 1) {
             location.reload();
           } else {
@@ -288,14 +364,117 @@ $(document).ready(function () {
           inProcess = false;
           data = null;
         });
+      } else {
+        switch (chackName) {
+          case 'errLengName':
+            var errName = 'Имя должно быть от 3 до 14 символов';
+          break;
+
+          case 'errTokenName':
+            var errName = 'Имя может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errName = '';
+          break;
+        }
+        $('.error-reg-name').text(errName);
+
+        switch (chackLastName) {
+          case 'errLengName':
+            var errLastName = 'Фамилия должна быть от 4 до 32 символов';
+          break;
+
+          case 'errTokenName':
+            var errLastName = 'Фамилия может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errLastName = '';
+          break;
+        }
+        $('.error-reg-last-name').text(errLastName);
+
+        if (!chackLogin){
+          $('.error-reg-email').text('Введите валидный email');
+        } else {
+          $('.error-reg-email').text('');
+        }
+
+        if (!chackPass){
+          $('.error-reg-pass').text('Пароль должен быть от 4 до 32 сомволов');
+        } else {
+          $('.error-reg-pass').text('');
+        }
+
+      }
     });
 
+    $(".modal-don-big__sub-full").on("click", function (event) {
+      event.preventDefault();
+      var inputName2 = $(".modal-don-big__information--item--name").val();
+      var inputLastName2 = $(".modal-don-big__information--item--last-name").val();
+      var inputLogin2 = $(".modal-don-big__information--item--email").val();
 
+      var chackName2 = allLetter1(inputName2);
+      var chackLastName2 = allLetter2(inputLastName2);
+      var chackLogin2 = ValidateEmail(inputLogin2);
 
+      if (chackName2 && chackLastName2 && chackLogin2){
+        console.log(123);
+        $('.error-support-name').text('');
+        $('.error-support-last-name').text('');
+        $('.error-support-email').text('');
 
+        if (numTablet != 'chack'){
+        var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
+        } else {
+          var inputPrise = $(".num_summ_5").val()
+          numTablet = inputPrise;
+          if (numTablet < 10){
+            numTablet = 10;
+          }
+          var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
+        }
+        window.open(a);
+      } else {
+        
+        switch (chackName2) {
+          case 'errLengName':
+            var errName = 'Имя должно быть от 3 до 14 символов';
+          break;
 
+          case 'errTokenName':
+            var errName = 'Имя может содержать только латинские и русские буквы';
+          break;
 
+          case true:
+            var errName = '';
+          break;
+        }
+        $('.error-support-name').text(errName);
 
+        switch (chackLastName2) {
+          case 'errLengName':
+            var errLastName = 'Фамилия должна быть от 4 до 32 символов';
+          break;
 
+          case 'errTokenName':
+            var errLastName = 'Фамилия может содержать только латинские и русские буквы';
+          break;
 
+          case true:
+            var errLastName = '';
+          break;
+        }
+        $('.error-support-last-name').text(errLastName);
+
+        if (!chackLogin2){
+          $('.error-support-email').text('Введите валидный email');
+        } else {
+          $('.error-support-email').text('');
+        }
+      }
+
+    })
 })
