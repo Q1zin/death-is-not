@@ -131,7 +131,7 @@ $(document).ready(function () {
             $.each(data,function(index, data){
               $("#content__video--wrap-video").append("<div class=\"content__card\"><img class=\"content__card--img\" src=\"http://img.youtube.com/vi/" + data.link + "/mqdefault.jpg\" alt=\"img: превью видео\"><span class=\"content__card--text\">" + data.content + "</span><span class=\"content__card--more\"><a class=\"content__card--link\" target=\"_blank\" href=\"https://www.youtube.com/watch?v=" + data.link + "\">Подробнее</a></span></div>");
             });
-            num += 3;
+            num += 6;
           };
           inProcess = false;
           data = null;
@@ -477,4 +477,5 @@ $(document).ready(function () {
       }
 
     })
+
 })
