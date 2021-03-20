@@ -277,10 +277,36 @@ $(document).ready(function () {
 
 
 
-    $(".more-slide").on("click", function (params) {
-      // swiper.swiper.slideTo(0, 0);('<div className="swiper-slide">Slide 10"</div>');
-      swiper.appendSlide('Slide ' + (++appendNumber));
-      console.log(123);
+    var num2 = 3;
+    var inProcess = false;
+    var mynum2 = $('div.hidden').data('num');
+
+    $(".swiper__more-slide").on("click", function (params) {
+      if (num2 < mynum2){
+        $.ajax({
+          url: 'loading_content/load.php',
+          method: 'GET',
+          data: {"num" : num2},
+          beforeSend: function(){
+            inProcess = true;
+          }
+        }).done(function(data){
+          data = jQuery.parseJSON(data);
+          if (data != null) {
+            $.each(data,function(index, data){
+              swiper.appendSlide("<div class=\"content__card swiper-slide\"><img class=\"content__card--img\" src=\"http://img.youtube.com/vi/" + data.link + "/mqdefault.jpg\" alt=\"img: превью видео\"><span class=\"content__card--text\">" + data.content + "</span><span class=\"content__card--more\"><a class=\"content__card--link\" target=\"_blank\" href=\"https://www.youtube.com/watch?v=" + data.link + "\">Подробнее</a></span></div>");
+            });
+            // $(".swiper__more-slide").remove();
+            // swiper.appendSlide("<button class=\"swiper-slide swiper__more-slide\"><img src=\"img/circle_chevron_right.svg\" alt=\"icon: more content\"></button>");
+            num2 += 6;
+            if (num2 >= mynum2){
+            $(".swiper__more-slide").remove()
+          }
+          };
+          inProcess = false;
+          data = null;
+        });
+      }
     })
 
 

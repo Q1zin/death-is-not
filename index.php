@@ -4,6 +4,7 @@ require 'config.php';
 require 'login_chack/login_chack.php';
 
 $query = mysqli_query($connection, "SELECT * FROM `vidos` ORDER BY `views` DESC LIMIT 3");
+$query3 = mysqli_query($connection, "SELECT * FROM `vidos` ORDER BY `views` DESC LIMIT 3");
 $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
 
 ?>
@@ -134,14 +135,22 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
         </div>
 
         <div class="content-wrap-swipe">
+            <h3 class="content-wrap-swipe__title">Популярные видео на канале</h3>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
-                    <!-- <button class="more-slide"><img src="img/circle_chevron_right.svg" alt="icon: more content"></button> -->
+                    <?php for ($i=0; $i < 3; $i++) { $content = mysqli_fetch_array($query3); ?>
+                    <div class="content__card swiper-slide">
+                        <img class="content__card--img"
+                            src="http://img.youtube.com/vi/<?php echo $content['link'] ?>/mqdefault.jpg"
+                            alt="img: превью видео">
+                        <span class="content__card--text"><?php echo $content['content'] ?></span>
+                        <span class="content__card--more"><a class="content__card--link" target="_blank"
+                                href="https://www.youtube.com/watch?v=<?php echo $content['link'] ?>">Подробнее</a></span>
+                    </div>
+                    <?php } ?>
+                    <button class="swiper-slide swiper__more-slide"><img src="img/circle_chevron_right.svg"
+                            alt="icon: more content"></button>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
 
         </div>
