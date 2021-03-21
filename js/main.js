@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    // string = $('.all-dtp__card-text').text();
+
+    // if(string.length > 10) {
+    // string = string.substring(0,9)+"...";
+    // }
+
+    // $('.all-dtp__card-text').text(string)
+
+    // String.prototype.trunc = String.prototype.trunc ||
+    //   function(n){
+    //       return (this.length > n) ? this.substr(0, n-1) + '...' : this;
+    //   };
+
+    //   var s = 'not very long';
+
+    //   $('.all-dtp__card-text:nth-child(2)').text(s.trunc(4));
+
     var loginButton = $(".header-right__logining--btn");
     loginButton.on("click", openModalLogin);
 

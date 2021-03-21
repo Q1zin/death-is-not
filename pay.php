@@ -1,5 +1,6 @@
 <?php
     require 'config.php';
+    require 'login_chack/login_chack.php';
 
     $m = 286526; // id магазина
     $oa = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['oa'])))); // сумма платежа

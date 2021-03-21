@@ -3,85 +3,8 @@
 require 'config.php';
 require 'login_chack/login_chack.php';
 
-if (!$login_chack->login_in){
-    header("Location: $homepage");
-    exit;
-}
-
-class Profile {
-    private $userId;
-    private $email;
-    private $name;
-    private $last_name;
-    private $region;
-    private $city;
-    private $userHash;
-    private $loginHash;
-
-    public function __construct($connection)
-    {
-        $this->userId = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));
-        $this->userHash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userHash']))));
-        $this->loginHash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['loginHash']))));
-
-        $sqlQuery = "SELECT  `region`, `city`, `name`, `lastName`, `login` FROM `user_log` WHERE `loginHash` = '$this->loginHash' AND `id` = '$this->userId' AND `userHash` = '$this->userHash'";
-
-        if ($sqlResult = mysqli_query($connection, $sqlQuery)){
-            $result = mysqli_fetch_array($sqlResult);;
-            $this->email = $result['login'];
-            $this->last_name = $result['lastName'];
-            $this->name = $result['name'];
-            $this->region = $result['region'];
-            $this->city = $result['city'];
-        }
-    }
-
-    public function logout($connection){
-        $settype = settype($user_id, 'integer');
-        $is_int = is_int($user_id);
-
-        if ($is_int && $settype && 1){
-            $this->userId = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));;
-            $sqlQuery = "UPDATE `user_log` SET `userHash` = NULL WHERE `id` = \"$this->userId\"";
-
-            setcookie("userId", '', time() - 300);
-            setcookie("userHash", '', time() - 300);
-            setcookie("loginHash", '', time() - 300);
-            mysqli_close($connection);
-
-            header("Refresh: 0");
-            exit;
-        }
-    }
-
-    public function getEmail(){
-        return $this->email;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getLastName(){
-        return $this->last_name;
-    }
-
-    public function getRegion(){
-        return $this->region;
-    }
-
-    public function getCity(){
-        return $this->city;
-    }
-}
-
-$profile = new Profile($connection);
-
-if (isset($_POST['exit'])){
-    $profile->logout($connection);
-}
-
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -92,17 +15,16 @@ if (isset($_POST['exit'])){
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <title>Смерти НЕТ! - Профиль</title>
+    <title>Смерти НЕТ! - Добавление ДТП</title>
     <link rel="shortcut icon" href="img/favicon.svg">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index-style.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/add-dtp.css">
 </head>
 
 <body>
-
     <header class="header">
         <div class="header-wrap">
             <div class="header-left">
@@ -128,7 +50,12 @@ if (isset($_POST['exit'])){
                         <span class=\"user-link__text\">$login_chack->user_name</span>
                     </a>
                     </div>";
-                } ?>
+                } else {
+                    echo "<div class=\"header-right__logining\">
+                    <button href=\"sign-in.php\" class=\"header-right__logining--btn\">
+                    войти
+                    </button>
+                    </div>"; } ?>
 
 
             </div>
@@ -152,92 +79,16 @@ if (isset($_POST['exit'])){
         </div>
     </header>
 
-    <section class="profile">
-        <div class="profile-wrap">
-            <form class="profile__exit" action="" method="post">
-                <input class="profile__exit--input" type="submit" value="Выйти" name="exit">
-            </form>
-            <h1 class="profile__title">Мой профиль</h1>
-            <div class="profile__tablet">
-                <button
-                    class="profile__tablet-item profile__tablet-item-1 profile__tablet-item--active">основное</button>
-                <button class="profile__tablet-item profile__tablet-item-2">мои пожертвования</button>
-                <button class="profile__tablet-item profile__tablet-item-3">добавленные ДТП</button>
-            </div>
-            <div class="profile-content">
-                <div class="profile__info profile-content--active">
-                    <div class="profile__input-wrap" title="Чтобы изменить почту, обратитесь в тех поддержку">
-                        <label for="e-mail" class="profile__label">
-                            E-mail*
-                        </label>
-                        <input placeholder="Alex@mail.ru" disabled="disabled" value="<?= $profile->getEmail(); ?>"
-                            class="profile__input profile__input--email" id="e-mail" type="text" name="email">
-                        <i class="profile__input--email-icon"></i>
-                    </div>
-                    <div class="profile__input-wrap">
-                        <label for="name" class="profile__label">
-                            Имя*
-                        </label>
-                        <input placeholder="Иван" value="<?= $profile->getName(); ?>"
-                            class="profile__input profile__input--name" id="name" type="text" name="name">
-                    </div>
-                    <span class="profile__error profile__error--name"></span>
-                    <div class="profile__input-wrap">
-                        <label for="last-name" class="profile__label">
-                            Фамилия*
-                        </label>
-                        <input placeholder="Иванович" value="<?= $profile->getLastName(); ?>"
-                            class="profile__input profile__input--last-name" id="last-name" type="text"
-                            name="last-name">
-                    </div>
-                    <span class="profile__error profile__error--last-name"></span>
-                    <div class="profile__input-wrap">
-                        <label for="region" class="profile__label">
-                            Регион
-                        </label>
-                        <input placeholder="Алтайский край" value="<?= $profile->getRegion(); ?>"
-                            class="profile__input profile__input--region" id="region" type="text" name="region">
-                    </div>
-                    <span class="profile__error profile__error--region"></span>
-                    <div class="profile__input-wrap">
-                        <label for="Город" class="profile__label">
-                            Город
-                        </label>
-                        <input placeholder="Барнаул" value="<?= $profile->getCity(); ?>"
-                            class="profile__input profile__input--city" id="Город" type="text" name="city">
-                    </div>
-                    <span class="profile__error profile__error--city"></span>
-                    <div class="profile__info--save">
-                        <button class="profile__info--save-btn" type="submit">
-                            Сохранить
-                        </button>
-                        <span class="profile__info--save-text"></span>
-                    </div>
 
-                </div>
-                <div class="profile__my-donations">
-                    <span class="profile__my-donations__info">У вас нет пожертвований</span>
-                </div>
-                <div class="profile__added-accidents">
-                    <span class="profile__added-accidents__info">Вы не добавляли ДТП</span>
-                </div>
-            </div>
+    <section class="add-dtp">
+        <div class="add-dtp-wrap">
+            <h1 class="add-dtp__title">Добавить ДТП</h1>
         </div>
-
     </section>
 
 
-    <!-- <?php
-    if ($login_chack->login_in){
-        echo "login - " . $login_chack->get_login() . "<br />";
-        echo "privilege - " . $login_chack->get_privilege() . "<br />";
-        echo "user_name - " . $login_chack->user_name . "<br />";
-        echo "login_in - " . $login_chack->login_in . "<br />";
-    } else {
-        header("Location: $homepage");
-        exit;
-    }
-?> -->
+
+
 
     <footer class="footer">
         <div class="footer-wrap">
@@ -273,6 +124,38 @@ if (isset($_POST['exit'])){
         </div>
 
     </footer>
+
+    <div class="modal-login">
+        <a href="#" class="modal-close__link"><img src="img/close.svg" alt="icon: close modal"></a>
+        <span class="modal-login__title">Вход</span>
+        <input placeholder="Ваш e-mail*" type="email" class="modal-login__input modal-login__input--log">
+        <div class="modal-login__input-pass--wrap">
+            <input placeholder="Введите пароль*" type="password" class="modal-login__input modal-login__input-pass">
+            <i class="register__glass"></i>
+        </div>
+        <!-- <span class="error-reg-pass"></span> -->
+        <span class="modal-login__error">Введен неправильный логин или пароль</span>
+        <input type="submit" class="modal-login__input--sub">
+        <a href="#" class="modal-login__btn--reg">Зарегистрироваться</a>
+    </div>
+    <div class="modal-reg">
+        <a href="#" class="modal-close__link"><img src="img/close.svg" alt="icon: close modal"></a>
+        <span class="modal-reg__title">Регистрация</span>
+        <input placeholder="Фамилия*" type="text" class="modal-reg__input modal-reg__input--name">
+        <span class="error-reg-name"></span>
+        <input placeholder="Имя*" type="text" class="modal-reg__input modal-reg__input--last-name">
+        <span class="error-reg-last-name"></span>
+        <input placeholder="Ваш e-mail*" type="email" class="modal-reg__input modal-reg__input--log">
+        <span class="error-reg-email"></span>
+        <div class="modal-reg__input-pass--wrap">
+            <input placeholder="Придумайте пароль*" type="password" class="modal-reg__input modal-reg__input-pass">
+            <i class="register__glass2"></i>
+        </div>
+        <span class="error-reg-pass"></span>
+        <span class="modal-reg__error">Пользователь с таким логином существует</span>
+        <input type="submit" class="modal-reg__input--sub">
+        <a href="#" class="modal-reg__btn--log">Войти</a>
+    </div>
 
     <div class="modal-don">
         <a href="#" class="modal-close__link modal-close__link-mini">
@@ -377,7 +260,6 @@ if (isset($_POST['exit'])){
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
