@@ -1,0 +1,72 @@
+.footer-wrap2
+    display: none
+.footer
+    width: 100%
+    padding: 30px 0
+    background-color: #F34D42
+    &-wrap
+        width: 1300px
+        margin: auto
+        display: flex
+        flex-direction: column
+        align-items: start
+    &__item
+        font-family: Montserrat
+        font-style: normal
+        font-weight: normal
+        font-size: 14px
+        line-height: 135%
+        color: #FFFFFF
+        &--link
+            font-family: Montserrat
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 135%
+            color: #FFFFFF
+@media (max-width: 1340px)
+    .footer
+        padding: 20px 0
+        &-wrap
+            width: 868px
+        &__item
+            font-size: 12px
+            &--link
+                font-size: 12px
+@media (max-width: 900px)
+    .footer
+        padding: 15px 0
+        &-wrap
+            width: 656px
+        &__item
+            font-size: 11px
+            &--link
+                font-size: 11px
+@media (max-width: 680px)
+    .footer
+        margin: auto
+        &__item
+            color: #000000
+            &--link
+                color: #000000
+        &-wrap
+            display: none
+            // width: calc(100% - 20px)
+        &-wrap2
+            width: calc(100% - 20px)
+            display: flex
+            margin: auto
+            align-items: center
+            justify-content: space-between
+            &--text
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 139.9%
+                color: #FFFFFF
+            &--glav
+                width: 30px
+                height: 30px
+            &-form
+                height: 31px

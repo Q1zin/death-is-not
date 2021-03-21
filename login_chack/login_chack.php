@@ -1,53 +1,71 @@
 <?php
 
 class Login_chack{
-    public $loginHash;
-    public $userId;
-    public $userHash;
-    public $privilege;
+    private $loginHash;
+    private $userId;
+    private $userHash;
+    private $privilege;
     public $user_name;
-    public $cookie;
     public $login_in;
+    private $login;
 
     function __construct($connection){
-
-        if (isset($_COOKIE['cookie_agreement'])){
-            $this->cookie = 1;
-        }
-
         if (isset($_COOKIE['userId']) && isset($_COOKIE['userHash']) && isset($_COOKIE['loginHash'])) {
-            $this->userId = $_COOKIE['userId'];
-            $this->userHash = $_COOKIE['userHash'];
-            $this->loginHash = $_COOKIE['loginHash'];
-            
-            $sqlQuery = "SELECT `name`, `privilege` FROM `user_log` WHERE `loginHash` = '$this->loginHash' AND `userHash` = '$this->userHash' AND `id` = '$this->userId' LIMIT 1";
+
+            $settype = settype($_COOKIE['userId'], 'integer');
+            $is_int = is_int($_COOKIE['userId']);
+
+            if ($is_int && $settype && 1){                
+                $user_id = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));
+                $user_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userHash']))));
+                $login_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['loginHash']))));
+                $sqlQuery = "SELECT `name`, `privilege`, `login` FROM `user_log` WHERE `loginHash` = '$login_hash' AND `userHash` = '$user_hash' AND `id` = '$user_id' LIMIT 1";
+
             if ($sqlResult = mysqli_query($connection, $sqlQuery)){
                 if (mysqli_num_rows($sqlResult) > 0) {
                     $result = mysqli_fetch_array($sqlResult);
                     $this->user_name = $result['name'];
                     $this->privilege = $result['privilege'];
-
-                    // if ($result['cookie']){
-                    //     $this->cookie = $result['cookie'];
-                    // } else {
-                    //     if ($_COOKIE['cookie_agreement'] == true){
-                    //         $this->cookie = 1;
-                    //         $sqlQuery_2 = "UPDATE `user_log` SET `cookie` = '1' WHERE `id` = '$this->userId'";
-                    //         mysqli_query($connection, $sqlQuery_2);
-                    //     }
-                    // }
+                    $this->login = $result['login'];
                     $this->login_in = true;
                 } else {
+                    $this->login_in = false;
                     setcookie("userId", '', time() - 300);
                     setcookie("userHash", '', time() - 300);
                     setcookie("loginHash", '', time() - 300);
-                    $this->login_in = false;
                 }
+            } else {
+                $this->login_in = false;
+                setcookie("userId", '', time() - 300);
+                setcookie("userHash", '', time() - 300);
+                setcookie("loginHash", '', time() - 300);
+            }
+            } else {
+                $this->login_in = false;
+                setcookie("userId", '', time() - 300);
+                setcookie("userHash", '', time() - 300);
+                setcookie("loginHash", '', time() - 300);
             }
         } else {
             $this->login_in = false;
+            setcookie("userId", '', time() - 300);
+            setcookie("userHash", '', time() - 300);
+            setcookie("loginHash", '', time() - 300);
         }
     }
+
+
+
+    public function get_privilege()
+    {
+        return $this->privilege;
+    }
+
+    public function get_login()
+    {
+        return $this->login;
+    }
+
 }
 
 $login_chack = new Login_chack($connection);

@@ -1,0 +1,205 @@
+.menu
+    display: none
+
+.header
+    width: 100%
+    background-color: #F34D42
+    padding: 20px 0
+    &-center
+        display: none
+    &-wrap
+        width: 1300px
+        margin: auto
+        display: flex
+        align-items: center
+        justify-content: space-between
+    &-left
+        display: flex
+        align-items: center
+        flex-direction: row
+        &__img
+            &-link
+                width: 40px
+                height: 40px
+                margin-left: 25px
+        &__links
+            margin-left: 64px
+            &--item
+                font-family: 'Montserrat', sans-serif
+                font-style: normal
+                font-weight: normal
+                font-size: 13px
+                line-height: 16px
+                text-decoration: none
+                color: #FFFFFF
+                &:not(:last-child)
+                    margin-right: 23px
+                &:nth-child(1)
+                    text-decoration-line: underline
+    &-right
+        display: flex
+        align-items: center
+        flex-direction: row
+        &__donation
+            &--button
+                border: 1px #FFFFFF solid
+                background-color: #fff
+                color: #F34D42
+                border-radius: 8px
+                padding: 11px 22px
+                font-family: 'Montserrat', sans-serif
+                font-style: normal
+                font-weight: normal
+                font-size: 12px
+                line-height: 145%
+                cursor: pointer
+                margin-right: 25px
+        &__logining
+            display: flex
+            align-items: center
+            justify-content: center
+            &--btn
+                border: 1px #FFFFFF solid
+                background-color: #F34D42
+                color: #FFFFFF
+                border-radius: 8px
+                padding: 11px 22px
+                font-family: 'Montserrat', sans-serif
+                font-style: normal
+                font-weight: normal
+                font-size: 12px
+                line-height: 145%
+                cursor: pointer
+.user-link
+    display: flex
+    align-items: center
+    cursor: pointer
+    text-decoration: none
+    &__image
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        margin-right: 10px
+        object-fit: cover
+    &__text
+        font-family: 'Montserrat', sans-serif
+        font-style: normal
+        font-weight: normal
+        font-size: 12px
+        line-height: 145%
+        color: #FFFFFF
+
+@media (max-width: 1340px)
+    .header
+        &-wrap
+            width: 868px
+        &-left
+            &__img
+                &-link
+                    margin-left: 7px
+            &__links
+                margin-left: 30px
+
+@media (max-width: 900px)
+    .user-link
+        &__image
+            width: 30px
+            height: 30px
+            margin-right: 8px
+        &__text
+            font-size: 10px
+    .header
+        padding: 15px
+        &-wrap
+            width: 656px
+        &-left
+            &__img
+                &-link
+                    margin-left: 0
+            &__links
+                margin-left: 17px
+                &--item
+                    font-size: 12px
+                    line-height: 15px
+                    &:not(:last-child)
+                        margin-right: 17px
+        &-right
+            display: flex
+            align-items: center
+            flex-direction: row
+            &__donation
+                &--button
+                    padding: 7px 12px
+                    font-size: 11px
+                    margin-right: 15px
+            &__logining
+                &--btn
+                    padding: 7px 16px
+                    font-size: 11px
+                    line-height: 145%
+
+@media (max-width: 680px)
+    .header
+        padding: 10px 0
+        &-center
+            display: flex
+            align-items: center
+            justify-content: space-between
+            width: 100%
+            &-title
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 145%
+                color: #FFFFFF
+
+        &-wrap
+            width: calc(100% - 20px)
+        &-left
+            display: none
+        &-right
+            display: none
+
+    .menu
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        height: 122px
+        background: #F34D42
+        align-items: flex-end
+        justify-content: center
+        &--active
+            display: flex
+        &-close
+            position: absolute
+            left: 10px
+            top: 10px
+            height: 10px
+            width: 10px
+        &-wrap
+            display: flex
+            align-items: center
+            flex-direction: column
+            margin-bottom: 20px
+        &__links
+            display: flex
+            align-items: center
+            flex-direction: column
+            &--item
+                font-family: Montserrat
+                font-style: normal
+                font-weight: normal
+                font-size: 10px
+                line-height: 12px
+                color: #FFFFFF
+                &:not(:nth-child(1))
+                    text-decoration: none
+                &:not(:last-child)
+                    margin-bottom: 12px
+
+    .header-right__logining--btn
+        padding: 5px 12px
+        border-radius: 4px
+        z-index: 100

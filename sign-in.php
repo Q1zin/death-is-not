@@ -8,18 +8,18 @@ if ($login_chack->login_in){
     exit;
 }
 
-class Login{
-    public $login;
+class Login extends Login_chack{
+    private $login;
     public $err_login;
-    public $password;
+    private $password;
     public $err_password;
-    public $userId;
-    public $userHash;
-    public $loginHash;
+    private $userId;
+    private $userHash;
+    private $loginHash;
 
     public function __construct($connection, $login, $password){
-        $this->login = strip_tags(trim($login));
-        $this->password = strip_tags(trim($password));
+        $this->login = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($login))));
+        $this->password = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($password))));
 
         $sqlQuery = "SELECT `id`, `password`, `loginHash` FROM `user_log` WHERE `login` = \"$this->login\" LIMIT 1";
 
@@ -41,8 +41,6 @@ class Login{
                         setcookie("userHash", $this->userHash, time() + 2592000);
                         setcookie("loginHash", $this->loginHash, time() + 2592000);
                         mysqli_close($connection);
-                        // header("Refresh: 0");
-                        // exit;
                     }
                 }
             } else {

@@ -127,6 +127,7 @@ $(document).ready(function () {
           }
         }).done(function(data){
           data = jQuery.parseJSON(data);
+          console.log(data);
           if (data != null) {
             $.each(data,function(index, data){
               $("#content__video--wrap-video").append("<div class=\"content__card\"><img class=\"content__card--img\" src=\"http://img.youtube.com/vi/" + data.link + "/mqdefault.jpg\" alt=\"img: превью видео\"><span class=\"content__card--text\">" + data.content + "</span><span class=\"content__card--more\"><a class=\"content__card--link\" target=\"_blank\" href=\"https://www.youtube.com/watch?v=" + data.link + "\">Подробнее</a></span></div>");
@@ -252,19 +253,54 @@ $(document).ready(function () {
 
     
 
+    // $('.modal-don-big__sub').on("click", function () {
+    //   if (numTablet != 'chack'){
+    //   var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
+    //   } else {
+    //     var inputPrise = $(".num_summ_5").val()
+    //     numTablet = inputPrise;
+    //     if (numTablet < 10){
+    //       numTablet = 10;
+    //     }
+    //     var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
+    //   }
+    //   window.open(a);
+    // })
+
+
     $('.modal-don-big__sub').on("click", function () {
-      if (numTablet != 'chack'){
-      var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
-      } else {
-        var inputPrise = $(".num_summ_5").val()
+      if (numTablet == 'chack'){
+      var inputPrise = $(".num_summ_5").val()
         numTablet = inputPrise;
         if (numTablet < 10){
           numTablet = 10;
         }
-        var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
       }
-      window.open(a);
+
+      var login = $(".modal-don-big__information--item--email").val();
+      var us_name = $(".modal-don-big__information--item--name").val();
+      var us_last_name = $(".modal-don-big__information--item--last-name").val();
+
+      $.ajax({
+          url: 'pay.php',
+          method: 'GET',
+          data: {"oa" : numTablet, "o" : login, "us_name" : us_name, "us_last_name" : us_last_name},
+          beforeSend: function(){
+            inProcess = true;
+          }
+        }).done(function(data){
+          var a = data;
+          inProcess = false;
+          data = null;
+          window.open(a);
+        });
+
     })
+
+
+
+
+
 
 
     var swiper = new Swiper(".swiper-container", {
@@ -328,6 +364,20 @@ $(document).ready(function () {
         var unameLeng = uname.length;
         if (unameLeng >=3 && unameLeng <=32){
           var letters = /^[A-Za-zА-Яа-я]+$/;
+          if (uname.match(letters)){
+            return true;
+          } else {
+            return 'errTokenName';
+          }
+        } else {
+          return 'errLengName';
+        }
+      }
+
+      function allLetter3(uname) { 
+        var unameLeng = uname.length;
+        if (unameLeng >=3 && unameLeng <=32){
+          var letters = /^[A-Za-zА-Яа-я\s]+$/;
           if (uname.match(letters)){
             return true;
           } else {
@@ -447,22 +497,36 @@ $(document).ready(function () {
       var chackLogin2 = ValidateEmail(inputLogin2);
 
       if (chackName2 && chackLastName2 && chackLogin2){
-        console.log(123);
         $('.error-support-name').text('');
         $('.error-support-last-name').text('');
         $('.error-support-email').text('');
 
-        if (numTablet != 'chack'){
-        var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
-        } else {
-          var inputPrise = $(".num_summ_5").val()
-          numTablet = inputPrise;
-          if (numTablet < 10){
-            numTablet = 10;
-          }
-          var a = "http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=286526&default-sum="+ numTablet +"&button-text=Оплатить&encoding=CP1251&type=v3&id=1668101";
+        if (numTablet == 'chack'){
+      var inputPrise = $(".num_summ_5").val()
+        numTablet = inputPrise;
+        if (numTablet < 10){
+          numTablet = 10;
         }
-        window.open(a);
+      }
+
+      var login = $(".modal-don-big__information--item--email").val();
+      var us_name = $(".modal-don-big__information--item--name").val();
+      var us_last_name = $(".modal-don-big__information--item--last-name").val();
+
+      $.ajax({
+          url: 'pay.php',
+          method: 'GET',
+          data: {"oa" : numTablet, "o" : login, "us_name" : us_name, "us_last_name" : us_last_name},
+          beforeSend: function(){
+            inProcess = true;
+          }
+        }).done(function(data){
+          var a = data;
+          inProcess = false;
+          data = null;
+          window.open(a);
+        });
+      
       } else {
         
         switch (chackName2) {
@@ -503,5 +567,158 @@ $(document).ready(function () {
       }
 
     })
+
+
+    $(".profile__tablet-item-1").on("click", function (event) {
+      $(".profile__tablet-item-1").addClass("profile__tablet-item--active");
+      $(".profile__tablet-item-2").removeClass("profile__tablet-item--active");
+      $(".profile__tablet-item-3").removeClass("profile__tablet-item--active");
+      $(".profile__my-donations").removeClass("profile-content--active");
+      $(".profile__added-accidents").removeClass("profile-content--active");
+      $(".profile__info").addClass("profile-content--active");
+    })
+    $(".profile__tablet-item-2").on("click", function (event) {
+      $(".profile__tablet-item-2").addClass("profile__tablet-item--active");
+      $(".profile__tablet-item-1").removeClass("profile__tablet-item--active");
+      $(".profile__tablet-item-3").removeClass("profile__tablet-item--active");
+      $(".profile__added-accidents").removeClass("profile-content--active");
+      $(".profile__info").removeClass("profile-content--active");
+      $(".profile__my-donations").addClass("profile-content--active");
+    })
+    $(".profile__tablet-item-3").on("click", function (event) {
+      $(".profile__tablet-item-3").addClass("profile__tablet-item--active");
+      $(".profile__tablet-item-1").removeClass("profile__tablet-item--active");
+      $(".profile__tablet-item-2").removeClass("profile__tablet-item--active");
+      $(".profile__my-donations").removeClass("profile-content--active");
+      $(".profile__info").removeClass("profile-content--active");
+      $(".profile__added-accidents").addClass("profile-content--active");
+    })
+
+    $(".profile__info--save-btn").on("click", function () {
+      var inputProName = $(".profile__input--name").val();
+      var inputProLastName = $(".profile__input--last-name").val();
+      var inputProRegion = $(".profile__input--region").val();
+      var inputProCity = $(".profile__input--city").val();
+
+      var inputProNameChack = allLetter2(inputProName);
+      var inputProLastNameChack = allLetter2(inputProLastName);
+
+      if (inputProRegion != ''){
+        var inputProRegionChack = allLetter3(inputProRegion);
+      } else {
+        inputProRegionChack = true;
+      }
+
+      if (inputProCity != ''){
+        var inputProCityChack = allLetter3(inputProCity);
+      } else {
+        inputProCityChack = true;
+      }
+
+      
+      
+
+      if ((inputProNameChack == true) && (inputProLastNameChack == true) && (inputProRegionChack == true) && (inputProCityChack == true)){
+        $('.profile__error').text('');
+
+        $.ajax({
+          url: 'edit-profile.php',
+          method: 'GET',
+          data: {"name" : inputProName, "last-name" : inputProLastName, "region" : inputProRegion, "city" : inputProCity, "loginHash" : getCookie('loginHash'), "userHash" : getCookie('userHash'), "userId" : getCookie('userId')},
+          beforeSend: function(){
+            inProcess = true;
+          }
+        }).done(function(data){
+          if (data == 'good'){
+            $(".profile__info--save-text").text('Настройки успешно изменены');
+            $(".user-link__text").text(inputProName);
+            setTimeout(function () {
+              $(".profile__info--save-text").text('');
+            }, 6000);
+          } else {
+            $(".profile__info--save-text").text('Что-то пошло не по плану');
+            setTimeout(function () {
+              $(".profile__info--save-text").text('');
+            }, 6000);
+          }
+          inProcess = false;
+          data = null;
+        });
+
+      } else {
+        switch (inputProNameChack) {
+          case 'errLengName':
+            var errLastName = 'Имя должна быть от 3 до 32 символов';
+          break;
+
+          case 'errTokenName':
+            var errLastName = 'Имя может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errLastName = '';
+          break;
+        }
+
+        $('.profile__error--name').text(errLastName);
+
+        switch (inputProLastNameChack) {
+          case 'errLengName':
+            var errLastName = 'Фамилия должна быть от 3 до 32 символов';
+          break;
+
+          case 'errTokenName':
+            var errLastName = 'Фамилия может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errLastName = '';
+          break;
+        }
+
+        $('.profile__error--last-name').text(errLastName);
+
+        switch (inputProRegionChack) {
+          case 'errLengName':
+            var errLastName = 'Регион должна быть от 3 до 32 символов';
+          break;
+
+          case 'errTokenName':
+            var errLastName = 'Регион может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errLastName = '';
+          break;
+        }
+
+        $('.profile__error--region').text(errLastName);
+
+        switch (inputProCityChack) {
+          case 'errLengName':
+            var errLastName = 'Город должна быть от 3 до 32 символов';
+          break;
+
+          case 'errTokenName':
+            var errLastName = 'Город может содержать только латинские и русские буквы';
+          break;
+
+          case true:
+            var errLastName = '';
+          break;
+        }
+
+        $('.profile__error--city').text(errLastName);
+
+      }
+    })
+
+
+  function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
 
 })

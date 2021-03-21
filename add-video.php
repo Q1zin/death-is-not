@@ -3,12 +3,10 @@
 require 'config.php';
 require 'login_chack/login_chack.php';
 
-// var_dump($login_chack);
-
 if ($login_chack->login_in != true){
     header("Location: $homepage");
     exit;
-} elseif ($login_chack->privilege != 'admin') {
+} elseif ($login_chack->get_privilege() != 'admin') {
     echo "<h1>Не достаточно прав!</h1><a href=\"$homepage\">Главная</a>";
     exit;
 }

@@ -1,10 +1,16 @@
 <?php
 
 require_once '../config.php';
+require_once '../login_chack/login_chack.php';
 
-$id = $_GET['id'];
-$views = $_GET['views'];
-$text = $_GET['text'];
+if ($login_chack->login_in != true){
+    header("Location: $homepage");
+    exit;
+} 
+
+$id = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['id']))));
+$views = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['views']))));
+$text = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['text']))));
 
 $query = mysqli_query($connection, "INSERT INTO `vidos`(`views`, `content`, `link`) VALUES ('$views','$text','$id')");
 

@@ -22,6 +22,8 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
     <title>Смерти НЕТ! - Главная</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index-style.css">
 </head>
 
@@ -37,7 +39,7 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
                     <a href="index.php" class="header-left__links--item">о проекте</a>
                     <a href="https://www.youtube.com/channel/UCEdi9MaYP4IEJjOTMOlkpeQ/featured" target="_blank"
                         class="header-left__links--item">новые видео</a>
-                    <a href="#" class="header-left__links--item">консультация юриста</a>
+                    <a href="dtp.php" class="header-left__links--item">Все ДТП</a>
                 </nav>
             </div>
             <div class="header-right">
@@ -227,8 +229,6 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
         </div>
     </div>
 
-
-
     <footer class="footer">
         <div class="footer-wrap">
             <span class="footer__item">Поддержать проект:</span>
@@ -241,14 +241,14 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
             <span class="footer__item">На PayPal: <a href="https://paypal.me/vasilyorlovdonate"
                     class="footer__item--link" target="_blank">paypal.me/vasilyorlovdonate</a></span>
             <br />
-            <a href="//freekassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/15.png"
+            <a href="https://www.free-kassa.ru/" target="_blank"><img src="//www.free-kassa.ru/img/fk_btn/15.png"
                     title="Приём оплаты на сайте картами"></a>
         </div>
         <div class="footer-wrap2">
             <a href="index.php" style="text-decoration: none; height: 30px;"><img src="img/img_homepage.svg"
                     class="footer-wrap2--glav" alt=""></a>
-            <a class="footer-wrap2-form" href="//freekassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/15.png"
-                    title="Приём оплаты на сайте картами"></a>
+            <a class="footer-wrap2-form" href="https://www.free-kassa.ru/" target="_blank"><img
+                    src="//www.free-kassa.ru/img/fk_btn/15.png" title="Приём оплаты на сайте картами"></a>
             <span></span>
             <span></span>
             <span></span>
