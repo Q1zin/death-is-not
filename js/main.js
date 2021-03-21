@@ -203,7 +203,7 @@ $(document).ready(function () {
           }
         }).done(function(data){
           data = jQuery.parseJSON(data);
-          if (data.err_login == false && data.err_password == false) {
+          if ((data.err_login == false) && (data.err_password == false)) {
             location.reload();
           } else {
             var modalLoginError = $(".modal-login__error");
@@ -414,7 +414,11 @@ $(document).ready(function () {
       }
 
       function ValidateEmail(uemail) {
-        var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // var mailformat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яА-Я\-0-9]+\.)+[a-zA-Zа-яА-Я]{2,}))$/;
+        // var mailformat = /^([a-zA-Z0-9_\.-])+@[a-zA-Zа-яА-Я0-9-]+\.([a-zA-Zа-яА-Я]{2,4}\.)?[a-zA-Zа-яА-Я]{2,4}$/i;
+        var mailformat = /@/;
+        
         if(uemail.match(mailformat)) {
           return true;
         } else {
@@ -434,7 +438,7 @@ $(document).ready(function () {
       var chackLogin = ValidateEmail(inputLogin);
       var chackPass = passid_validation(inputPassword);
 
-      if (chackName && chackLastName && chackLogin && chackPass){
+      if ((chackName == true) && (chackLastName == true) && (chackLogin == true) && (chackPass == true)){
         $('.error-reg-name').text('');
         $('.error-reg-last-name').text('');
         $('.error-reg-email').text('');
@@ -513,7 +517,7 @@ $(document).ready(function () {
       var chackLastName2 = allLetter2(inputLastName2);
       var chackLogin2 = ValidateEmail(inputLogin2);
 
-      if (chackName2 && chackLastName2 && chackLogin2){
+      if ((chackName2 == true) && (chackLastName2 == true) && (chackLogin2 == true)){
         $('.error-support-name').text('');
         $('.error-support-last-name').text('');
         $('.error-support-email').text('');

@@ -16,16 +16,16 @@ class Login_chack{
             $is_int = is_int($_COOKIE['userId']);
 
             if ($is_int && $settype && 1){                
-                $user_id = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));
-                $user_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userHash']))));
-                $login_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['loginHash']))));
+                $user_id = mysqli_real_escape_string($connection, $_COOKIE['userId']);
+                $user_hash = mysqli_real_escape_string($connection, $_COOKIE['userHash']);
+                $login_hash = mysqli_real_escape_string($connection, $_COOKIE['loginHash']);
                 $sqlQuery = "SELECT `name`, `privilege`, `login` FROM `user_log` WHERE `loginHash` = '$login_hash' AND `userHash` = '$user_hash' AND `id` = '$user_id' LIMIT 1";
 
             if ($sqlResult = mysqli_query($connection, $sqlQuery)){
                 if (mysqli_num_rows($sqlResult) > 0) {
                     $result = mysqli_fetch_array($sqlResult);
-                    $this->user_name = $result['name'];
-                    $this->privilege = $result['privilege'];
+                    $this->user_name = htmlspecialchars($result['name']);
+                    $this->privilege = htmlspecialchars($result['privilege']);
                     $this->login = $result['login'];
                     $this->login_in = true;
                 } else {

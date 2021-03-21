@@ -3,15 +3,15 @@
     require 'login_chack/login_chack.php';
 
     $m = 286526; // id магазина
-    $oa = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['oa'])))); // сумма платежа
+    $oa = mysqli_real_escape_string($connection, $_GET['oa']); // сумма платежа
     $secret_word = '9npvtcpv'; // секретное слово
 
     if ($login_chack->login_in){
         $em = $login_chack->get_login();
         $o = $login_chack->get_login();
     } else {
-        $em = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['o']))));
-        $o = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['o']))));
+        $em = mysqli_real_escape_string($connection, $_GET['o']);
+        $o = mysqli_real_escape_string($connection, $_GET['o']);
         
     }
     

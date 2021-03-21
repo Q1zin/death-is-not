@@ -1,17 +1,15 @@
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #F34D42;
+  background-color: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
+  background-color: #F34D42;
   border-radius: 0px;
-  box-shadow: 0px 0px 100px -60px #265880 inset;
-  border-radius: 16px;
 }
 
 html, body {
-  scrollbar-color: #ffffff #F34D42;
+  scrollbar-color: #F34D42 #ffffff;
   scrollbar-width: thin;
 }
 

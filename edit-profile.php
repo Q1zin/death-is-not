@@ -9,13 +9,13 @@
     exit;
     } 
 
-    $name = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['name']))));
-    $last_name = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['last-name']))));
-    $region = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['region']))));
-    $city = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_GET['city']))));
-    $login_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['loginHash']))));
-    $user_hash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userHash']))));
-    $user_id = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));
+    $name = mysqli_real_escape_string($connection, $_GET['name']);
+    $last_name = mysqli_real_escape_string($connection, $_GET['last-name']);
+    $region = mysqli_real_escape_string($connection, $_GET['region']);
+    $city = mysqli_real_escape_string($connection, $_GET['city']);
+    $login_hash = mysqli_real_escape_string($connection, $_COOKIE['loginHash']);
+    $user_hash = mysqli_real_escape_string($connection, $_COOKIE['userHash']);
+    $user_id = mysqli_real_escape_string($connection, $_COOKIE['userId']);
 
     if ($region == ''){
         $region = NULL;

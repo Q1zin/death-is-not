@@ -18,8 +18,8 @@ class Login extends Login_chack{
     private $loginHash;
 
     public function __construct($connection, $login, $password){
-        $this->login = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($login))));
-        $this->password = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($password))));
+        $this->login = mysqli_real_escape_string($connection,$login);
+        $this->password = mysqli_real_escape_string($connection,$password);
 
         $sqlQuery = "SELECT `id`, `password`, `loginHash` FROM `user_log` WHERE `login` = \"$this->login\" LIMIT 1";
 

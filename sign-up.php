@@ -20,10 +20,10 @@ class Register{
     public $registred;
 
     public function __construct($connection, $name, $last_name, $login, $password){
-        $this->login = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($login))));
-        $this->password = password_hash(mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($password)))), PASSWORD_BCRYPT);
-        $this->name = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($name))));
-        $this->last_name = mysqli_real_escape_string($connection,htmlspecialchars(strip_tags(trim($last_name))));
+        $this->login = mysqli_real_escape_string($connection,$login);
+        $this->password = password_hash(mysqli_real_escape_string($connection,$password), PASSWORD_BCRYPT);
+        $this->name = mysqli_real_escape_string($connection,$name);
+        $this->last_name = mysqli_real_escape_string($connection,$last_name);
 
         if ($this->login != '' && $this->password != '' && $this->name != '' && $this->last_name != ''){
             $sqlQuery2 = "SELECT `login` FROM `user_log` WHERE `login` = \"$this->login\"";

@@ -20,19 +20,19 @@ class Profile {
 
     public function __construct($connection)
     {
-        $this->userId = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));
-        $this->userHash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userHash']))));
-        $this->loginHash = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['loginHash']))));
+        $this->userId = mysqli_real_escape_string($connection, $_COOKIE['userId']);
+        $this->userHash = mysqli_real_escape_string($connection, $_COOKIE['userHash']);
+        $this->loginHash = mysqli_real_escape_string($connection, $_COOKIE['loginHash']);
 
         $sqlQuery = "SELECT  `region`, `city`, `name`, `lastName`, `login` FROM `user_log` WHERE `loginHash` = '$this->loginHash' AND `id` = '$this->userId' AND `userHash` = '$this->userHash'";
 
         if ($sqlResult = mysqli_query($connection, $sqlQuery)){
             $result = mysqli_fetch_array($sqlResult);;
-            $this->email = $result['login'];
-            $this->last_name = $result['lastName'];
-            $this->name = $result['name'];
-            $this->region = $result['region'];
-            $this->city = $result['city'];
+            $this->email = htmlspecialchars($result['login']);
+            $this->last_name = htmlspecialchars($result['lastName']);
+            $this->name = htmlspecialchars($result['name']);
+            $this->region = htmlspecialchars($result['region']);
+            $this->city = htmlspecialchars($result['city']);
         }
     }
 
@@ -41,7 +41,7 @@ class Profile {
         $is_int = is_int($user_id);
 
         if ($is_int && $settype && 1){
-            $this->userId = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['userId']))));;
+            $this->userId = mysqli_real_escape_string($connection, $_COOKIE['userId']);
             $sqlQuery = "UPDATE `user_log` SET `userHash` = NULL WHERE `id` = \"$this->userId\"";
 
             setcookie("userId", '', time() - 300);

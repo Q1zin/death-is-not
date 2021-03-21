@@ -8,9 +8,9 @@ if ($login_chack->login_in != true){
     exit;
 } 
 
-$id = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['id']))));
-$views = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['views']))));
-$text = mysqli_real_escape_string($connection, htmlspecialchars(strip_tags(trim($_COOKIE['text']))));
+$id = mysqli_real_escape_string($connection, $_COOKIE['id']);
+$views = mysqli_real_escape_string($connection, $_COOKIE['views']);
+$text = mysqli_real_escape_string($connection, $_COOKIE['text']);
 
 $query = mysqli_query($connection, "INSERT INTO `vidos`(`views`, `content`, `link`) VALUES ('$views','$text','$id')");
 
