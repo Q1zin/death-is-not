@@ -1,3 +1,11 @@
+.menu__links--item:nth-child(1) {
+  text-decoration: none;
+}
+
+.menu__links--item:nth-child(3) {
+  text-decoration: underline;
+}
+
 .header-left__links--item:nth-child(1) {
   text-decoration: none;
 }
@@ -8,7 +16,7 @@
 
 .all-dtp {
   width: 100%;
-  padding: 30px 0;
+  padding: 90px 0;
 }
 
 .all-dtp-wrap {
@@ -28,10 +36,6 @@
 }
 
 .all-dtp__header-btn-add {
-  background: #FFFFFF;
-  border: 1px solid #F34D42;
-  border-radius: 7px;
-  padding: 11px 22px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -39,22 +43,14 @@
   line-height: 17px;
   color: #F34D42;
   cursor: pointer;
-  text-decoration: none;
-  margin-right: 25px;
 }
 
 .all-dtp__header-btn-fitr {
-  background: #F34D42;
-  border: 1px solid #F34D42;
-  border-radius: 7px;
-  padding: 11px 22px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  color: #FFFFFF;
+  display: none;
+  margin-right: 24px;
   cursor: pointer;
+  border: none;
+  background-color: #fff;
 }
 
 .all-dtp__title {
@@ -70,7 +66,7 @@
 
 .all-dtp__right {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   width: auto;
 }
@@ -87,6 +83,8 @@
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
 .all-dtp__content--btn {
@@ -103,16 +101,20 @@
   cursor: pointer;
 }
 
+.all-dtp__content--btn-dis {
+  display: none;
+}
+
 .all-dtp__card {
   width: 310px;
   display: flex;
   align-items: start;
   justify-content: start;
   flex-direction: column;
-  border: 1px #DFDFDF solid;
+  border: 1px #F34D42 solid;
   border-radius: 6px;
   overflow: hidden;
-  padding-bottom: 12px;
+  padding: 5px 5px 12px 5px;
   margin-bottom: 30px;
 }
 
@@ -128,17 +130,17 @@
 }
 
 .all-dtp__card-wrap {
-  margin-top: 20px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 15px;
   align-items: start;
 }
 
 .all-dtp__card-title {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -152,23 +154,219 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 15px;
-  max-height: 46px;
+  line-height: 18px;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .all-dtp__card-btn {
   background: #FFFFFF;
-  border: 1px solid #F34D42;
-  border-radius: 6px;
-  padding: 9px 12px;
+  border: none;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   color: #F34D42;
-  text-decoration: none;
+}
+
+@media (max-width: 1340px) {
+  .all-dtp {
+    padding: 60px 0;
+  }
+  .all-dtp-wrap {
+    width: 868px;
+  }
+  .all-dtp__title {
+    font-size: 30px;
+    line-height: 37px;
+  }
+  .all-dtp__content-wrap {
+    margin-bottom: 20px;
+  }
+  .all-dtp__content--btn {
+    padding: 11px 64px;
+    font-size: 14px;
+    line-height: 145%;
+  }
+  .all-dtp__card {
+    width: 202px;
+    border-radius: 10px;
+    padding: 10px 10px 14px 10px;
+    margin-bottom: 18px;
+  }
+  .all-dtp__card:not(:nth-child(4n)) {
+    margin-right: 20px;
+  }
+  .all-dtp__card-img {
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 4px;
+  }
+  .all-dtp__card-wrap {
+    margin-top: 15px;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .all-dtp__card-title {
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .all-dtp__card-text {
+    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .all-dtp__card-btn {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .all-dtp {
+    padding: 60px 0;
+  }
+  .all-dtp-wrap {
+    width: 656px;
+  }
+  .all-dtp__title {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .all-dtp__content-wrap {
+    margin-bottom: 16px;
+  }
+  .all-dtp__content--btn {
+    font-size: 12px;
+    line-height: 145%;
+  }
+  .all-dtp__card {
+    margin-bottom: 24px;
+  }
+  .all-dtp__card:not(:nth-child(4n)) {
+    margin-right: 0;
+  }
+  .all-dtp__card:not(:nth-child(3n)) {
+    margin-right: 25px;
+  }
+  .all-dtp__card-title {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 3px;
+  }
+  .all-dtp__card-text {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .all-dtp {
+    padding: 35px 0;
+  }
+  .all-dtp-wrap {
+    width: 424px;
+  }
+  .all-dtp__header {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .all-dtp__header-btn-add {
+    font-size: 12px;
+    line-height: 145%;
+  }
+  .all-dtp__header-btn-fitr {
+    margin-right: 32px;
+  }
+  .all-dtp__title {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .all-dtp-content {
+    width: 100%;
+  }
+  .all-dtp__content-wrap {
+    justify-content: space-between;
+  }
+  .all-dtp__content--btn {
+    padding: 11px 30px;
+  }
+  .all-dtp__card {
+    width: 202px;
+    margin-bottom: 20px;
+  }
+  .all-dtp__card:not(:nth-child(4n)) {
+    margin-right: 0;
+  }
+  .all-dtp__card:not(:nth-child(3n)) {
+    margin-right: 0;
+  }
+  .all-dtp__card:not(:nth-child(2n)) {
+    margin-right: 20px;
+  }
+  .all-dtp__card-img {
+    width: 100%;
+    height: 145px;
+    object-position: 50% 50%;
+  }
+  .all-dtp__card-wrap {
+    margin-top: 15px;
+  }
+  .all-dtp__card-title {
+    margin-bottom: 3px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .all-dtp__card-text {
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .all-dtp__card-btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  .all-dtp-wrap {
+    width: calc(100% - 20px);
+  }
+  .all-dtp__content-wrap {
+    justify-content: center;
+  }
+  .all-dtp__card {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  .all-dtp__card:not(:nth-child(2n)) {
+    margin-right: 0;
+  }
+  .all-dtp__card-img {
+    height: 185px;
+  }
+  .all-dtp__card-wrap {
+    margin-top: 15px;
+  }
+  .all-dtp__card-title {
+    margin-bottom: 3px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .all-dtp__card-text {
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .all-dtp__card-btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
 /*# sourceMappingURL=all-dtp.css.map */

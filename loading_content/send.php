@@ -8,9 +8,9 @@ if ($login_chack->login_in != true){
     exit;
 } 
 
-$id = mysqli_real_escape_string($connection, $_COOKIE['id']);
-$views = mysqli_real_escape_string($connection, $_COOKIE['views']);
-$text = mysqli_real_escape_string($connection, $_COOKIE['text']);
+$id = mysqli_real_escape_string($connection, $_GET['id']);
+$views = mysqli_real_escape_string($connection, $_GET['views']);
+$text = mysqli_real_escape_string($connection, $_GET['text']);
 
 $query = mysqli_query($connection, "INSERT INTO `vidos`(`views`, `content`, `link`) VALUES ('$views','$text','$id')");
 

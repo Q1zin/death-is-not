@@ -1,0 +1,731 @@
+.header-left__links--item:nth-child(1) {
+  text-decoration: none;
+}
+
+.menu__links--item:nth-child(1) {
+  text-decoration: none;
+}
+
+.info-dtp {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.info-dtp-wrap {
+  width: 1300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.info-dtp__title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 10px;
+}
+
+.info-dtp__description {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 34px;
+  margin-top: 0;
+}
+
+.info-dtp__content-wrap {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.info-dtp__content-map {
+  width: 750px;
+  height: 400px;
+  background-color: #E4E4E4;
+}
+
+.info-dtp__content-comment {
+  width: 530px;
+  height: auto;
+}
+
+.comment__title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 25px;
+}
+
+.comment__textarea {
+  width: 100%;
+  min-height: 97px;
+  max-height: 500px;
+  min-width: 100%;
+  max-width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 14px 22px;
+}
+
+.comment__btn {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  padding: 12px 20px;
+  background: #F34D42;
+  border: 1px solid #F34D42;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comment__all-data {
+  margin-bottom: 36px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment__all-data--title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.comment__all-data--num {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #495057;
+}
+
+.info {
+  width: auto;
+  max-width: 750px;
+  min-width: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info__item {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+
+.info__item:not(:last-child) {
+  margin-bottom: 35px;
+}
+
+.info__item--title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  width: 300px;
+}
+
+.info__item--content {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  width: 415px;
+}
+
+.map {
+  margin-bottom: 60px;
+  border: none;
+}
+
+.discuss__comment-wrap:nth-child(1) {
+  border-top: 1px #b4b3b3 solid;
+}
+
+.discuss {
+  width: 100%;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.discuss__title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.discuss__empty {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #FFF3CD;
+  padding: 16px 22px;
+  border-radius: 6px;
+}
+
+.discuss__empty--dis {
+  display: none;
+}
+
+.discuss__empty--text {
+  color: #856404;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.discuss__empty-user {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #F7D7DA;
+  padding: 16px 22px;
+  border-radius: 6px;
+}
+
+.discuss__empty-user--text {
+  color: #90585C;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.discuss__comment {
+  margin-top: 20px;
+  padding: 10px 8px;
+  border-radius: 0px;
+  border-bottom: 1px #b4b3b3 solid;
+}
+
+.discuss__comment--top {
+  margin-bottom: 8px;
+}
+
+.discuss__comment--top--img {
+  width: 15px;
+  height: 15px;
+}
+
+.discuss__comment--top--name {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 18px;
+}
+
+.discuss__comment--top--data {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.discuss__comment--down {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+@media (max-width: 1340px) {
+  .info-dtp {
+    padding: 30px 0;
+  }
+  .info-dtp-wrap {
+    width: 868px;
+  }
+  .info-dtp__description {
+    margin-bottom: 26px;
+  }
+  .info-dtp__content-wrap {
+    flex-wrap: nowrap;
+  }
+  .info-dtp__content-map {
+    width: 500px;
+    height: 266px;
+  }
+  .info-dtp__content-comment {
+    width: 350px;
+    height: auto;
+  }
+  .info {
+    width: auto;
+    max-width: 500px;
+    min-width: 450px;
+  }
+  .info__item:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  .info__item--title {
+    font-size: 16px;
+    line-height: auto;
+    width: 300px;
+  }
+  .info__item--content {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: auto;
+    width: 256px;
+  }
+  .map {
+    margin-bottom: 40px;
+  }
+  .comment__title {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 8px;
+  }
+  .comment__textarea {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    max-height: 300px;
+  }
+  .comment__btn {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 8px 14px;
+  }
+  .comment__all-data {
+    margin-bottom: 16px;
+    width: 200px;
+  }
+  .comment__all-data--title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .comment__all-data--num {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #495057;
+  }
+  .discuss {
+    width: 100%;
+    padding-top: 20px;
+    margin-top: 0;
+  }
+  .discuss__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .discuss__empty {
+    width: 100%;
+    background-color: #FFF3CD;
+    padding: 16px 22px;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
+  .discuss__empty--dis {
+    display: none;
+  }
+  .discuss__empty--text {
+    color: #856404;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__empty-user {
+    margin-top: 0;
+    width: 100%;
+    background-color: #F7D7DA;
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .discuss__empty-user--text {
+    color: #90585C;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__comment {
+    margin-top: 20px;
+    padding: 10px 8px;
+    border-radius: 0px;
+    border-bottom: 1px #b4b3b3 solid;
+  }
+  .discuss__comment--top {
+    margin-bottom: 8px;
+  }
+  .discuss__comment--top--img {
+    width: 15px;
+    height: 15px;
+  }
+  .discuss__comment--top--name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: 6px;
+    margin-right: 18px;
+  }
+  .discuss__comment--top--data {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__comment--down {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .info-dtp {
+    padding: 30px 0;
+  }
+  .info-dtp-wrap {
+    width: 656px;
+  }
+  .info-dtp__description {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .info-dtp__title {
+    margin-bottom: 2px;
+    font-size: 30px;
+    line-height: 37px;
+  }
+  .info-dtp__content-map {
+    width: 372px;
+    height: 213px;
+  }
+  .info-dtp__content-comment {
+    width: 260px;
+  }
+  .info {
+    max-width: 384px;
+    min-width: 384px;
+  }
+  .info__item:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  .info__item--title {
+    font-size: 12px;
+    line-height: 15px;
+    width: 300px;
+  }
+  .info__item--content {
+    font-size: 12px;
+    line-height: 15px;
+    width: 304px;
+  }
+  .map {
+    margin-bottom: 18px;
+  }
+  .comment__title {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+  .comment__textarea {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    max-height: 250px;
+    min-height: 112px;
+    font-size: 12px;
+  }
+  .comment__btn {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 8px 14px;
+  }
+  .comment__all-data {
+    margin-bottom: 16px;
+    width: 120px;
+  }
+  .comment__all-data--title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .comment__all-data--num {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .discuss {
+    padding-top: 20px;
+    margin-top: 0;
+  }
+  .discuss__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .discuss__empty {
+    width: 100%;
+    background-color: #FFF3CD;
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .discuss__empty--dis {
+    display: none;
+  }
+  .discuss__empty--text {
+    color: #856404;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__empty-user {
+    margin-top: 0;
+    width: 100%;
+    background-color: #F7D7DA;
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .discuss__empty-user--text {
+    color: #90585C;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__comment {
+    margin-top: 12px;
+    padding: 8px 6px;
+  }
+  .discuss__comment--top {
+    margin-bottom: 8px;
+  }
+  .discuss__comment--top--img {
+    width: 13px;
+    height: 13px;
+  }
+  .discuss__comment--top--name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 6px;
+    margin-right: 18px;
+  }
+  .discuss__comment--top--data {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .discuss__comment--down {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .info-dtp {
+    padding: 25px 0;
+  }
+  .info-dtp-wrap {
+    width: calc(100% - 20px);
+    align-items: center;
+  }
+  .info-dtp__description {
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .info-dtp__title {
+    margin-bottom: 2px;
+    margin-top: 0;
+    font-size: 26px;
+    line-height: 37px;
+    text-align: center;
+  }
+  .info-dtp__content-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+  .info-dtp__content-map {
+    width: 100%;
+    height: 255px;
+  }
+  .info-dtp__content-comment {
+    width: 260px;
+  }
+  .info {
+    max-width: 400px;
+    min-width: auto;
+    margin-bottom: 40px;
+  }
+  .info__item:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  .info__item--title {
+    font-size: 11px;
+    line-height: 14px;
+    width: 260px;
+  }
+  .info__item--content {
+    font-size: 11px;
+    line-height: 14px;
+    width: 304px;
+  }
+  .map {
+    margin-bottom: 18px;
+  }
+  .comment__title {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+  .comment__textarea {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    max-height: 250px;
+    min-height: 112px;
+    font-size: 12px;
+  }
+  .comment__btn {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 8px 14px;
+  }
+  .comment__all-data {
+    margin-bottom: 16px;
+    width: 120px;
+  }
+  .comment__all-data--title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .comment__all-data--num {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .discuss {
+    padding-top: 20px;
+    margin-top: 0;
+  }
+  .discuss__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .discuss__empty {
+    width: 100%;
+    background-color: #FFF3CD;
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .discuss__empty--dis {
+    display: none;
+  }
+  .discuss__empty--text {
+    color: #856404;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__empty-user {
+    margin-top: 0;
+    width: 100%;
+    background-color: #F7D7DA;
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .discuss__empty-user--text {
+    color: #90585C;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .discuss__comment {
+    margin-top: 12px;
+    padding: 8px 6px;
+  }
+  .discuss__comment--top {
+    margin-bottom: 8px;
+  }
+  .discuss__comment--top--img {
+    width: 13px;
+    height: 13px;
+  }
+  .discuss__comment--top--name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 6px;
+    margin-right: 18px;
+  }
+  .discuss__comment--top--data {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .discuss__comment--down {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .info-dtp__content-map {
+    width: 300px;
+    height: 172px;
+  }
+  .info {
+    max-width: 300px;
+  }
+}
+/*# sourceMappingURL=info-dtp.css.map */

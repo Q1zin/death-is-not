@@ -605,7 +605,7 @@
   background-size: 16px 16px;
   content: '';
   position: absolute;
-  top: 42.5%;
+  top: 25px;
   right: 5px;
   transform: translate(-50%, -50%);
   z-index: 100000;
@@ -624,7 +624,7 @@
   background-size: 16px 16px;
   content: '';
   position: absolute;
-  top: 44.5%;
+  top: 25px;
   right: 5px;
   transform: translate(-50%, -50%);
   z-index: 100000;
@@ -762,6 +762,10 @@
 
 .num_summ--active span {
   color: #ffffff;
+}
+
+.num_summ--active-inp {
+  border: 1px red solid;
 }
 
 @media (max-width: 1340px) {

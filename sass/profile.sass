@@ -1,7 +1,15 @@
-.header-left__links--item:nth-child(1)
-    text-decoration-line: none
 .menu__links--item
-    text-decoration-line: none
+    &:nth-child(1)
+        text-decoration: none
+    &:nth-child(3)
+        text-decoration: none
+
+.header-left__links--item
+    &:nth-child(1)
+        text-decoration: none
+    &:nth-child(3)
+        text-decoration: none
+
 .profile
     width: 100%
     padding: 30px 0
@@ -37,7 +45,7 @@
             color: #808080
             cursor: pointer
     &__tablet
-        width: 540px
+        width: 318px
         display: flex
         align-items: center
         justify-content: space-between
@@ -87,8 +95,22 @@
                 color: #F34D42
     &__my-donations
         display: none
+        &__info
+            font-family: Montserrat
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 145%
+            color: #000000
     &__added-accidents
         display: none
+        &__info
+            font-family: Montserrat
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 145%
+            color: #000000
     &__input
         width: 320px
         border: none
@@ -165,6 +187,8 @@
         display: none
     .profile
         padding: 20px 0
+        &-content
+            width: 100%
         &-wrap
             width: 868px
             width: calc(100% - 20px)
@@ -175,6 +199,11 @@
             &-item
                 &:not(:last-child)
                     margin-bottom: 10px
+
+    .all-dtp__content-wrap
+        width: 424px
+        margin: auto
+
 @media (max-width: 500px)
     .profile
         &__title

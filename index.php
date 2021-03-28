@@ -67,11 +67,12 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
                 <a href="#" class="header-menu">
                     <img src="img/menu.svg" alt="img: menu" class="header-menu-img">
                 </a>
-                <span class="header-center-title"
-                    style="z-index:100; <?php if (!$login_chack->login_in) { echo "margin-left: 48px;"; } ?>">Смерти -
-                    НЕТ!</span>
+                <a href="index.php" class="header-center-title"
+                    style="z-index:100; text-decoration: none; <?php if (!$login_chack->login_in) { echo "margin-left: 48px;"; } ?>">Смерти
+                    -
+                    НЕТ!</a>
                 <?php if ($login_chack->login_in)
-                { echo "<a href=\"profile.php\" class=\"header-profile\" style=\"z-index:100;\"><img src=\"img/user.svg\" alt=\"icon: user\"></a>";
+                { echo "<a href=\"profile.php\" class=\"header-profile\" style=\"z-index:100; width: 14px; display: flex;\"><img style=\"width: 14px;\" src=\"img/user_header.svg\" alt=\"icon: user\"></a>";
                 } else {
                     echo "<div class=\"header-right__logining\">
                     <button href=\"sign-in.php\" class=\"header-right__logining--btn\">
@@ -207,7 +208,7 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
                     placeholder="Имя*" type="text" name="us_name">
                 <span class="error-support-last-name"></span>
                 <input class="modal-don-big__information--item modal-don-big__information--item--email"
-                    placeholder="Ваш e-mail*" type="email" name="em">
+                    placeholder="Ваш e-mail*" type="text" name="em">
                 <span class="error-support-email"></span>
             </div>
             <input class="modal-don-big__sub-full" type="submit" value="Пожервовать проекту">
@@ -281,7 +282,7 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
     <div class="modal-login">
         <a href="#" class="modal-close__link"><img src="img/close.svg" alt="icon: close modal"></a>
         <span class="modal-login__title">Вход</span>
-        <input placeholder="Ваш e-mail*" type="email" class="modal-login__input modal-login__input--log">
+        <input placeholder="Ваш e-mail*" type="text" class="modal-login__input modal-login__input--log">
         <div class="modal-login__input-pass--wrap">
             <input placeholder="Введите пароль*" type="password" class="modal-login__input modal-login__input-pass">
             <i class="register__glass"></i>
@@ -298,7 +299,7 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
         <span class="error-reg-name"></span>
         <input placeholder="Имя*" type="text" class="modal-reg__input modal-reg__input--last-name">
         <span class="error-reg-last-name"></span>
-        <input placeholder="Ваш e-mail*" type="email" class="modal-reg__input modal-reg__input--log">
+        <input placeholder="Ваш e-mail*" type="text" class="modal-reg__input modal-reg__input--log">
         <span class="error-reg-email"></span>
         <div class="modal-reg__input-pass--wrap">
             <input placeholder="Придумайте пароль*" type="password" class="modal-reg__input modal-reg__input-pass">
@@ -319,13 +320,13 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `vidos`");
                 <a href="index.php" class="menu__links--item">о проекте</a>
                 <a href="https://www.youtube.com/channel/UCEdi9MaYP4IEJjOTMOlkpeQ/featured" target="_blank"
                     class="menu__links--item">новые видео</a>
-                <a href="#" class="menu__links--item">консультация юриста</a>
+                <a href="dtp.php" class="menu__links--item">все дтп</a>
             </nav>
         </div>
 
     </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/swiper-bundle.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/main.js"></script>
 </body>

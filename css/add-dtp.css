@@ -1,10 +1,18 @@
+.hidden__geo {
+  display: none;
+}
+
 .header-left__links--item:nth-child(1) {
+  text-decoration: none;
+}
+
+.menu__links--item:nth-child(1) {
   text-decoration: none;
 }
 
 .add-dtp {
   width: 100%;
-  padding: 50px 0;
+  padding: 80px 0;
 }
 
 .add-dtp-wrap {
@@ -21,6 +29,525 @@
   font-weight: normal;
   font-size: 36px;
   line-height: 44px;
+  margin-bottom: 51px;
+}
+
+.main-info {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.main-info__title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 26px;
+}
+
+.main-info__wrap {
+  width: 100%;
+}
+
+.main-info__wrap-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-info__wrap-link_to_photo {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-info__wrap-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-info__wrap-first {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.main-info__wrap-first--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.main-info__wrap-first--input {
+  padding: 8px 20px;
+  background: #FFFFFF;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  height: 35px;
+}
+
+.main-info__wrap-first--data {
+  width: 200px;
+}
+
+.main-info__wrap-first--category {
+  width: 350px;
+  padding-right: 40px;
+  appearance: none;
+  background: url("../img/circlt-down.svg") no-repeat right;
+  background-position-x: calc(100% - 20px);
+}
+
+.main-info__wrap-first--harm_to_health {
+  width: 290px;
+  padding-right: 40px;
+  appearance: none;
+  background: url("../img/circlt-down.svg") no-repeat right;
+  background-position-x: calc(100% - 20px);
+}
+
+.main-info__wrap-first--link_to_video {
+  width: 400px;
+}
+
+.main-info__wrap--item {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-info__wrap-second {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.main-info__wrap-second--label {
+  margin-bottom: 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.main-info__wrap-second--link_to_photo {
+  width: 400px;
+  height: 35px;
+  background: #FFFFFF;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 32px;
+}
+
+.main-info__wrap-second--name {
+  width: 400px;
+  height: 77px;
+  background: #FFFFFF;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  resize: none;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.main-info__wrap-second--description--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.main-info__wrap-second--description--textarea {
+  resize: none;
+  background: #FFFFFF;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  height: 175px;
+  width: 880px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.place {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.place__title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 14px;
+}
+
+.place__under-text {
+  display: inline-block;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
   margin-bottom: 18px;
+}
+
+.place__map {
+  width: 100%;
+  height: 300px;
+  outline: 1px red solid;
+}
+
+.more-atr {
+  width: 100%;
+}
+
+.more-atr__title {
+  margin-bottom: 28px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.more-atr__content-up {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.more-atr__content-down {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.more-atr__content--number_of_victims {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-atr__content--number_of_victims--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--number_of_victims--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content--the_death_toll {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-atr__content--the_death_toll--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--the_death_toll--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content--road_accident_participants {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-atr__content--road_accident_participants--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down2.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--road_accident_participants--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content--road_condition {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-atr__content--road_condition--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down2.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--road_condition--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content--visibility {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.more-atr__content--visibility--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--visibility--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content--weather {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-atr__content--weather--select {
+  height: 35px;
+  padding-right: 36px;
+  appearance: none;
+  background: url("../img/circlt-down2.svg") no-repeat right;
+  background-position-x: calc(100% - 16px);
+  width: 310px;
+  border: 1px solid #FADEDE;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.more-atr__content--weather--label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+.more-atr__content-btn--chack {
+  background: #FFFFFF;
+  border: 1px solid #F34D42;
+  border-radius: 6px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #F34D42;
+  margin-right: 30px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.more-atr__content-btn--send {
+  background: #F34D42;
+  border: 1px solid #F34D42;
+  border-radius: 6px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+  margin-right: 30px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.checkselect {
+  position: relative;
+  display: block;
+}
+
+.checkselect-over {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.checkselect-popup {
+  display: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  max-height: 210px;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0px;
+  background: #fff;
+  z-index: 9999;
+  overflow: auto;
+  user-select: none;
+  box-shadow: 0px 1px 2px 0px black;
+}
+
+.checkselect label {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 4px 6px 4px 25px;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.checkselect-popup input {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.checkselect-popup label:hover {
+  background: #03a2ff;
+  color: #fff;
+}
+
+.checkselect-popup fieldset {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.checkselect-popup fieldset input {
+  left: 15px;
+}
+
+.checkselect-popup fieldset label {
+  padding-left: 32px;
+}
+
+.checkselect-popup legend {
+  display: block;
+  margin: 0;
+  padding: 5px 8px;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.1;
+}
+
+.form-control {
+  border: none;
+  background: #fff;
+  appearance: none;
+  margin-top: 1px;
 }
 /*# sourceMappingURL=add-dtp.css.map */

@@ -3,8 +3,96 @@
 require 'config.php';
 require 'login_chack/login_chack.php';
 
-$query = mysqli_query($connection, "SELECT `id`, `name`, `description`, `preview` FROM `dtb` ORDER BY `id` DESC LIMIT 8");
-$query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
+class InfoDTP{
+    public $article;
+    public $data;
+    public $category;
+    public $harm_to_health;
+    public $link_to_video;
+    public $preview;
+    public $link_to_photo;
+    public $name;
+    public $description;
+    public $number_of_victims;
+    public $the_death_toll;
+    public $road_accident_participants;
+    public $road_condition;
+    public $visibility;
+    public $weather;
+    public $cord_1;
+    public $cord_2;
+    public $address;
+    public $isset;
+
+
+    public function __construct($connection)
+    {
+        $this->chack_art();
+        if ($this->article != false){
+            $sqlQuery = "SELECT * FROM `dtb` WHERE `id` = '$this->article' LIMIT 1";
+            if ($sqlResult = mysqli_query($connection, $sqlQuery)){
+                if (mysqli_num_rows($sqlResult) > 0){
+                    $result = mysqli_fetch_array($sqlResult);
+                    $this->data = htmlspecialchars($result['data']);
+                    $this->category = htmlspecialchars($result['category']);
+                    $this->harm_to_health = htmlspecialchars($result['harm_to_health']);
+                    $this->link_to_video = htmlspecialchars($result['link_to_video']);
+                    $this->preview = htmlspecialchars($result['preview']);
+                    $this->link_to_photo = htmlspecialchars($result['link_to_photo']);
+                    $this->name = htmlspecialchars($result['name']);
+                    $this->description = htmlspecialchars($result['description']);
+                    $this->number_of_victims = htmlspecialchars($result['number_of_victims']);
+                    $this->the_death_toll = htmlspecialchars($result['the_death_toll']);
+                    $this->road_accident_participants = htmlspecialchars($result['road_accident_participants']);
+                    $this->road_condition = htmlspecialchars($result['road_condition']);
+                    $this->visibility = htmlspecialchars($result['visibility']);
+                    $this->weather = htmlspecialchars($result['weather']);
+                    $this->cord_1 = htmlspecialchars($result['cord_1']);
+                    $this->cord_2 = htmlspecialchars($result['cord_2']);
+                    $this->address = htmlspecialchars($result['address']);
+                    $this->isset = true;
+                } else {
+                    $this->isset = false;
+                }
+            } else {
+                $this->isset = false;
+            }
+        } else {
+            $this->isset = false;
+        }
+    }
+
+    private function chack_art()
+    {
+        if (isset($_GET['article'])){
+            global $connection;
+            $this->article = mysqli_real_escape_string($connection, $_GET['article']);
+        } else {
+            $this->article = false;
+        }
+    }
+
+    public function get_comment()
+    {
+        global $connection;
+        $sqlQuery = "SELECT `userId`, `comment`, `article`, `data` FROM `comments` WHERE `article` = '$this->article' ORDER BY `data` DESC";
+        $sqlResult = mysqli_query($connection, $sqlQuery);
+        if (mysqli_num_rows($sqlResult) > 0) {
+            while ($result = mysqli_fetch_array($sqlResult)) { 
+                $userId = $result['userId'];
+
+                $nameQuery = mysqli_query($connection, "SELECT `name` FROM `user_log` WHERE `id` = '$userId'");
+                $nameResult = mysqli_fetch_array($nameQuery);
+
+                echo "<div class=\"discuss__comment\"><div class=\"discuss__comment--top\"><img class=\"discuss__comment--top--img\" src=\"img/user.svg\" alt=\"icon: user profiles\"><span class=\"discuss__comment--top--name\">" . $nameResult['name'] . "</span><span class=\"discuss__comment--top--data\">" . $result['data'] . "</span></div><div class=\"discuss__comment--down\">" . $result['comment'] . "</div></div>";
+            }
+        } else {
+            echo '<div class="discuss__empty"><span class="discuss__empty--text">Комментариев нет</span></div>';
+        }
+    }
+}
+
+$infoDTP = new InfoDTP($connection);
 
 ?>
 
@@ -14,21 +102,21 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.svg">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <title>Смерти НЕТ! - Все ДТП</title>
-    <link rel="shortcut icon" href="img/favicon.svg">
+    <title>Смерти НЕТ! - Информация о дтп xxxxxxx</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index-style.css">
-    <link rel="stylesheet" href="css/all-dtp.css">
+    <link rel="stylesheet" href="css/info-dtp.css">
 </head>
 
 <body>
-    <div class='hidden' data-num2='<?= mysqli_num_rows($query2); ?>'></div>
     <header class="header">
         <div class="header-wrap">
             <div class="header-left">
@@ -84,42 +172,143 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
         </div>
     </header>
 
-    <section class="all-dtp">
-        <div class="all-dtp-wrap">
-            <div class="all-dtp__header">
-                <h1 class="all-dtp__title">Все ДТП</h1>
-                <div class="all-dtp__right">
-                    <button class="all-dtp__header-btn-fitr" type="submit"><img src="img/slider.svg"
-                            alt="img: filter"></button>
-                    <a href="add-dtp.php" class="all-dtp__header-btn-add">Добавить ДТП</a>
-                </div>
-            </div>
+    <section class="info-dtp">
+        <?php if ($infoDTP->isset == 1){ ?>
 
-            <div class="all-dtp__content">
-                <div class="all-dtp__content-wrap">
-                    <?php while ($content = mysqli_fetch_array($query)) { ?>
-                    <div class="all-dtp__card">
-                        <?php if ($content['preview'] == ''){ ?>
-                        <img src="img/default.svg" alt="img: dtp" class="all-dtp__card-img">
-                        <?php } else { ?>
-                        <img src="http://img.youtube.com/vi/<?php echo $content['preview']; ?>/mqdefault.jpg"
-                            alt="img: dtp" class="all-dtp__card-img">
-                        <?php } ?>
-                        <div class="all-dtp__card-wrap">
-                            <span class="all-dtp__card-title"><?= $content['name']; ?></span>
-                            <span class="all-dtp__card-text"><?= $content['description']; ?></span>
-                            <a class="all-dtp__card-btn"
-                                href="info-dtp.php?article=<?= $content['id']; ?>">Подробнее</a>
+        <div class="info-dtp-wrap">
+            <h1 class="info-dtp__title"><?php echo $infoDTP->name; ?></h1>
+            <p class="info-dtp__description"><?php echo $infoDTP->description; ?></p>
+            <div class="info-dtp__content-wrap">
+                <div class="info-dtp__content-wrap--left">
+                    <?php if ($infoDTP->link_to_video != ''){ ?>
+
+                    <iframe src="https://www.youtube.com/embed/<?php echo $infoDTP->preview; ?>" allow="fullscreen"
+                        referrerpolicy="no-referrer" class="info-dtp__content-map map"></iframe>
+
+                    <?php }; ?>
+                    <div class="info-dtp__content-info info">
+                        <div class="info__item">
+                            <div class="info__item--title">Категория</div>
+                            <div class="info__item--content"><?php echo $infoDTP->category; ?></div>
                         </div>
-                    </div>
-                    <?php } ?>
+                        <div class="info__item">
+                            <div class="info__item--title">Вред здоровью</div>
+                            <div class="info__item--content"><?php echo $infoDTP->harm_to_health; ?></div>
+                        </div>
+                        <div class="info__item">
+                            <div class="info__item--title">Количество пострадавших</div>
+                            <div class="info__item--content"><?php echo $infoDTP->number_of_victims; ?></div>
+                        </div>
+                        <div class="info__item">
+                            <div class="info__item--title">Количество погибших</div>
+                            <div class="info__item--content"><?php echo $infoDTP->the_death_toll; ; ?></div>
+                        </div>
+                        <?php
+                    
+                        // if ($infoDTP->link_to_video != ''){
+                        // echo "<div class=\"info__item\">
+                        //     <div class=\"info__item--title\">Ссылка на видео</div>
+                        //     <div class=\"info__item--content\">$infoDTP->link_to_video</div>
+                        //     </div>";
+                        // }
+                        
+                        if ($infoDTP->link_to_photo != ''){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Ссылка на фото</div>
+                            <div class=\"info__item--content\">$infoDTP->link_to_photo</div>
+                            </div>";
+                        }
 
+                        if ($infoDTP->road_accident_participants != ''){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Участники ДТП</div>
+                            <div class=\"info__item--content\">$infoDTP->road_accident_participants</div>
+                            </div>";
+                        }
+
+                        if ($infoDTP->road_condition != ''){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Состояние дороги</div>
+                            <div class=\"info__item--content\">$infoDTP->road_condition</div>
+                            </div>";
+                        }
+
+                        if ($infoDTP->visibility != 'Выберите'){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Видимость</div>
+                            <div class=\"info__item--content\">$infoDTP->visibility</div>
+                            </div>";
+                        }
+
+                        if ($infoDTP->weather != ''){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Погода</div>
+                            <div class=\"info__item--content\">$infoDTP->weather</div>
+                            </div>";
+                        }
+
+                        if (($infoDTP->cord_1 != '') || ($infoDTP->cord_2 != '') || ($infoDTP->address != '')){
+                        echo "<div class=\"info__item\">
+                            <div class=\"info__item--title\">Адрес</div>
+                            <div class=\"info__item--content\">$infoDTP->cord_1 , $infoDTP->cord_2 , $infoDTP->address</div>
+                            </div>";
+                        }
+                        
+                        ?>
+                    </div>
                 </div>
-                <button class="all-dtp__content--btn" type="submit">Больше</button>
+                <div class="info-dtp__content-wrap--right">
+                    <div class="info-dtp__content-comment comment">
+                        <div class="comment__all-data">
+                            <span class="comment__all-data--title">Дата</span>
+                            <span class="comment__all-data--num"><?php echo $infoDTP->data; ?></span>
+                        </div>
+                        <h3 class="comment__title">Добавить комментарий</h3>
+                        <?php
+                        
+                        if ($login_chack->login_in){
+                            ?>
+                        <textarea class="comment__textarea" name="new-comment"
+                            placeholder="Введите комментарий"></textarea>
+                        <button type="submit" class="comment__btn"
+                            data-article="<?php echo $infoDTP->article; ?>">Опубликовать</button>
+                        <?php
+                        } else {
+                            ?>
+                        <div class="discuss__empty-user"><span class="discuss__empty-user--text">Комментировать могут
+                                только
+                                зарегистрированные пользователи</span></div>
+                        <?php
+                        };
+                        
+                        
+                        ?>
+
+
+                    </div>
+                    <div class="info-dtp__content-discuss discuss">
+                        <h3 class="discuss__title">Обсуждение</h3>
+                        <div class="discuss__comment-wrap">
+                            <?php $infoDTP->get_comment(); ?>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
+
+
+
+
         </div>
 
 
+
+
+
+
+
+        <?php } else { echo '<div class="info-dtp-wrap"><h1 class="info-dtp__title">Такой страницы нет(((</h1></div>'; } ?>
     </section>
 
     <div class="modal-don">
@@ -213,6 +402,7 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
                     class="footer-wrap2--glav" alt=""></a>
             <a class="footer-wrap2-form" href="https://www.free-kassa.ru/" target="_blank"><img
                     src="//www.free-kassa.ru/img/fk_btn/15.png" title="Приём оплаты на сайте картами"></a>
+            <!-- не очень хорошее решение, но пока что вот так -->
             <span></span>
             <span></span>
             <span></span>
@@ -227,21 +417,6 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
         </div>
 
     </footer>
-
-    <div class="menu">
-        <a href="#" class="menu-close" style="<?php if (!$login_chack->login_in) { echo "top: 16px;"; } ?>">
-            <img src="img/menu-close.svg" alt="icon: close">
-        </a>
-        <div class="menu-wrap">
-            <nav class="menu__links">
-                <a href="index.php" class="menu__links--item">о проекте</a>
-                <a href="https://www.youtube.com/channel/UCEdi9MaYP4IEJjOTMOlkpeQ/featured" target="_blank"
-                    class="menu__links--item">новые видео</a>
-                <a href="dtp.php" class="menu__links--item">все дтп</a>
-            </nav>
-        </div>
-
-    </div>
 
     <div class="cover-up">
         <div class="modal-don-mini">
@@ -289,9 +464,29 @@ $query2 = mysqli_query($connection, "SELECT `id` FROM `dtb`");
         <a href="#" class="modal-reg__btn--log">Войти</a>
     </div>
 
+    <div class="menu">
+        <a href="#" class="menu-close" style="<?php if (!$login_chack->login_in) { echo "top: 16px;"; } ?>">
+            <img src="img/menu-close.svg" alt="icon: close">
+        </a>
+        <div class="menu-wrap">
+            <nav class="menu__links">
+                <a href="index.php" class="menu__links--item">о проекте</a>
+                <a href="https://www.youtube.com/channel/UCEdi9MaYP4IEJjOTMOlkpeQ/featured" target="_blank"
+                    class="menu__links--item">новые видео</a>
+                <a href="dtp.php" class="menu__links--item">все дтп</a>
+            </nav>
+        </div>
+
+    </div>
+
     <script src="js/swiper-bundle.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/info-dtp.js"></script>
     <script src="js/main.js"></script>
+
+
+
+
 </body>
 
 </html>

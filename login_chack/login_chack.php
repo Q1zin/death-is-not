@@ -24,6 +24,9 @@ class Login_chack{
             if ($sqlResult = mysqli_query($connection, $sqlQuery)){
                 if (mysqli_num_rows($sqlResult) > 0) {
                     $result = mysqli_fetch_array($sqlResult);
+                    $this->userId = $user_id;
+                    $this->userHash = $user_hash;
+                    $this->loginHash = $login_hash;
                     $this->user_name = htmlspecialchars($result['name']);
                     $this->privilege = htmlspecialchars($result['privilege']);
                     $this->login = $result['login'];
@@ -64,6 +67,11 @@ class Login_chack{
     public function get_login()
     {
         return $this->login;
+    }
+
+    public function get_id()
+    {
+        return $this->userId;
     }
 
 }

@@ -73,6 +73,10 @@ class Profile {
     public function getCity(){
         return $this->city;
     }
+
+    public function getId(){
+        return $this->userId;
+    }
 }
 
 $profile = new Profile($connection);
@@ -80,6 +84,10 @@ $profile = new Profile($connection);
 if (isset($_POST['exit'])){
     $profile->logout($connection);
 }
+
+$id = $profile->getId();
+
+$sqlQuery = mysqli_query($connection, "SELECT `id`, `name`, `description`, `preview` FROM `dtb` WHERE `id_added` = '$id' ORDER BY `id` DESC");
 
 ?>
 <!DOCTYPE html>
@@ -98,6 +106,7 @@ if (isset($_POST['exit'])){
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="css/all-dtp.css">
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
@@ -136,11 +145,12 @@ if (isset($_POST['exit'])){
                 <a href="#" class="header-menu">
                     <img src="img/menu.svg" alt="img: menu" class="header-menu-img">
                 </a>
-                <span class="header-center-title"
-                    style="z-index:100; <?php if (!$login_chack->login_in) { echo "margin-left: 48px;"; } ?>">Смерти -
-                    НЕТ!</span>
+                <a href="index.php" class="header-center-title"
+                    style="z-index:100; text-decoration: none; <?php if (!$login_chack->login_in) { echo "margin-left: 48px;"; } ?>">Смерти
+                    -
+                    НЕТ!</a>
                 <?php if ($login_chack->login_in)
-                { echo "<a href=\"profile.php\" class=\"header-profile\" style=\"z-index:100;\"><img src=\"img/user.svg\" alt=\"icon: user\"></a>";
+                { echo "<a href=\"profile.php\" class=\"header-profile\" style=\"z-index:100; width: 14px; display: flex;\"><img style=\"width: 14px;\" src=\"img/user_header.svg\" alt=\"icon: user\"></a>";
                 } else {
                     echo "<div class=\"header-right__logining\">
                     <button href=\"sign-in.php\" class=\"header-right__logining--btn\">
@@ -161,7 +171,7 @@ if (isset($_POST['exit'])){
             <div class="profile__tablet">
                 <button
                     class="profile__tablet-item profile__tablet-item-1 profile__tablet-item--active">основное</button>
-                <button class="profile__tablet-item profile__tablet-item-2">мои пожертвования</button>
+                <!-- <button class="profile__tablet-item profile__tablet-item-2">мои пожертвования</button> -->
                 <button class="profile__tablet-item profile__tablet-item-3">добавленные ДТП</button>
             </div>
             <div class="profile-content">
@@ -216,10 +226,28 @@ if (isset($_POST['exit'])){
 
                 </div>
                 <div class="profile__my-donations">
-                    <span class="profile__my-donations__info">У вас нет пожертвований</span>
+                    <span class="profile__my-donations__info">Страница с пожертвованиями в разработке</span>
                 </div>
                 <div class="profile__added-accidents">
+                    <?php
+                        if (mysqli_num_rows($sqlQuery) <= 0){ ?>
                     <span class="profile__added-accidents__info">Вы не добавляли ДТП</span>
+                    <?php } else { echo '<div class="all-dtp__content-wrap">'; while ($content = mysqli_fetch_array($sqlQuery)) { ?>
+                    <div class="all-dtp__card">
+                        <?php if ($content['preview'] == ''){ ?>
+                        <img src="img/default.svg" alt="img: dtp" class="all-dtp__card-img">
+                        <?php } else { ?>
+                        <img src="http://img.youtube.com/vi/<?php echo $content['preview']; ?>/mqdefault.jpg"
+                            alt="img: dtp" class="all-dtp__card-img">
+                        <?php } ?>
+                        <div class="all-dtp__card-wrap">
+                            <span class="all-dtp__card-title"><?= $content['name']; ?></span>
+                            <span class="all-dtp__card-text"><?= $content['description']; ?></span>
+                            <a class="all-dtp__card-btn"
+                                href="info-dtp.php?article=<?= $content['id']; ?>">Подробнее</a>
+                        </div>
+                    </div>
+                    <?php } } echo '</div>';?>
                 </div>
             </div>
         </div>
@@ -323,7 +351,7 @@ if (isset($_POST['exit'])){
                     placeholder="Имя*" type="text" name="us_name">
                 <span class="error-support-last-name"></span>
                 <input class="modal-don-big__information--item modal-don-big__information--item--email"
-                    placeholder="Ваш e-mail*" type="email" name="em">
+                    placeholder="Ваш e-mail*" type="text" name="em">
                 <span class="error-support-email"></span>
             </div>
             <input class="modal-don-big__sub-full" type="submit" value="Пожервовать проекту">
@@ -354,7 +382,7 @@ if (isset($_POST['exit'])){
                 <a href="index.php" class="menu__links--item">о проекте</a>
                 <a href="https://www.youtube.com/channel/UCEdi9MaYP4IEJjOTMOlkpeQ/featured" target="_blank"
                     class="menu__links--item">новые видео</a>
-                <a href="#" class="menu__links--item">консультация юриста</a>
+                <a href="dtp.php" class="menu__links--item">все дтп</a>
             </nav>
         </div>
 
@@ -374,7 +402,7 @@ if (isset($_POST['exit'])){
         </div>
     </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/swiper-bundle.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/main.js"></script>
 
